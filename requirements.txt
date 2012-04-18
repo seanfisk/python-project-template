@@ -1,4 +1,7 @@
 # documentation
 Sphinx
 
+# argument parsing (in Python standard library >= 2.7)
+argparse
+
 # the rest of your requirements go here
