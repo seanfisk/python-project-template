@@ -11,7 +11,7 @@ def main(argv=None):
     if argv is None:
         argv = sys.argv
 
-    author_strings = []                                                                                                                                                                                    
+    author_strings = []
     for name, email in zip(metadata.authors, metadata.emails):
         author_strings.append('Author: {0} <{1}>'.format(name, email))
 
