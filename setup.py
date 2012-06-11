@@ -4,7 +4,12 @@
 
 import os
 from my_module import metadata
-from distutils.core import setup
+
+# auto-install and download distribute
+import distribute_setup
+distribute_setup.use_setuptools()
+
+from setuptools import setup, find_packages
 
 # credit: <http://packages.python.org/an_example_pypi_project/setuptools.html>
 # Utility function to read the README file.
@@ -14,6 +19,13 @@ from distutils.core import setup
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+install_requirements = [
+    'argparse',
+    'Sphinx'
+]
+
+# see here for more options:
+# <http://packages.python.org/distribute/setuptools.html>
 setup(name=metadata.title,
       version=metadata.version,
       author=metadata.authors[0],
@@ -39,6 +51,16 @@ setup(name=metadata.title,
           'Topic :: System :: Installation/Setup',
           'Topic :: System :: Software Distribution',
           ],
-      packages=['my_module'],
-      scripts=['scripts/my_module_runner']
+      packages=find_packages(),
+      install_requires=install_requirements,
+      zip_safe=False, # don't use eggs
+      entry_points={
+          'console_scripts': [
+              'my_module_runner = my_module.main:main'
+          ],
+          # if you have a gui, use this
+          # 'gui_scripts': [
+          #     'my_module_gui = my_module.gui:main'
+          # ]
+      }
       )

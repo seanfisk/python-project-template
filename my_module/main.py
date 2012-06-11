@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-
-# My Awesome Module main
+""":mod:`my_module.main` -- My awesome Python module main
+"""
 
 from __future__ import print_function
 import sys
