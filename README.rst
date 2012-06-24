@@ -79,6 +79,14 @@ Instructions
 
 #. Now come back and replace this README with your own text.
 
+#. If you'd like to use ReportLab_ to generate your documentation, please see
+   `instructions for using rst2pdf with Sphinx`_. The section in ``conf.py`` has
+   already been added, but you must add the sections to your generate
+   ``Makefile`` and ``make.bat`` manually.
+
+.. _ReportLab: http://www.reportlab.com/
+.. _instructions for using rst2pdf with Sphinx: http://rst2pdf.ralsina.com.ar/handbook.html#sphinx
+
 Notes
 =====
 
