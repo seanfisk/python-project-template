@@ -21,7 +21,6 @@ def read(fname):
 
 install_requirements = [
     'argparse',
-    'Sphinx'
 ]
 
 # see here for more options:
