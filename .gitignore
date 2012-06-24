@@ -1,5 +1,8 @@
 # Emacs rope configuration
 .ropeproject
+.project
+.pydevproject
+.settings
 
 # Python
 *.py[co]
