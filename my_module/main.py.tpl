@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-""":mod:`my_module.main` -- My awesome Python module main
+""":mod:`{title}.main` -- Program entry point
 """
 
 from __future__ import print_function
 import sys
 import argparse
-from my_module import metadata
+from {title} import metadata
 
 def main(argv=None):
     if argv is None:
@@ -25,14 +25,14 @@ URL: <{url}>
     version=metadata.version,
     authors='\n'.join(author_strings),
     url=metadata.url)
-    
+
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=metadata.description,
         epilog=epilog)
 
     args = arg_parser.parse_args(args=argv[1:])
-    
+
     print(epilog)
 
 if __name__ == '__main__':
