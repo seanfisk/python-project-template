@@ -29,4 +29,4 @@ for tpl_file_name in tpl_file_names:
     real_file_name = os.path.splitext(tpl_file_name)[0]
     print('Subsituting', tpl_file_name, '→', real_file_name)
     with open(real_file_name, 'w') as real_file:
-        print(template.safe_substitute(**metadata.__dict__), file=real_file)
+        real_file.write(template.safe_substitute(**metadata.__dict__))

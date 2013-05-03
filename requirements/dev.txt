@@ -1,0 +1,8 @@
+Sphinx
+paver
+flake8
+pytest
+
+# Used for paver output
+colorama
+pyfiglet
