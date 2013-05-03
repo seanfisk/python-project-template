@@ -7,10 +7,13 @@ import sys
 import argparse
 from $title import metadata
 
-def main(argv=None):
-    if argv is None:
-        argv = sys.argv
 
+def main(argv):
+    """Program entry point.
+
+    :param argv: command-line arguments
+    :type argv: :class:`list`
+    """
     author_strings = []
     for name, email in zip(metadata.authors, metadata.emails):
         author_strings.append('Author: {0} <{1}>'.format(name, email))
@@ -21,19 +24,19 @@ def main(argv=None):
 {authors}
 URL: <{url}>
 '''.format(
-    title=metadata.nice_title,
-    version=metadata.version,
-    authors='\n'.join(author_strings),
-    url=metadata.url)
+        title=metadata.nice_title,
+        version=metadata.version,
+        authors='\n'.join(author_strings),
+        url=metadata.url)
 
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=metadata.description,
         epilog=epilog)
 
-    args = arg_parser.parse_args(args=argv[1:])
+    arg_parser.parse_args(args=argv[1:])
 
     print(epilog)
 
 if __name__ == '__main__':
-    sys.exit(main())
+    raise SystemExit(main(sys.argv))
