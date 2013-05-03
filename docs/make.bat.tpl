@@ -99,9 +99,9 @@ if "%1" == "qthelp" (
 	echo.
 	echo.Build finished; now you can run "qcollectiongenerator" with the ^
 .qhcp project file in %BUILDDIR%/qthelp, like this:
-	echo.^> qcollectiongenerator %BUILDDIR%\qthelp\{nice_title_no_spaces}.qhcp
+	echo.^> qcollectiongenerator %BUILDDIR%\qthelp\${nice_title_no_spaces}.qhcp
 	echo.To view the help file:
-	echo.^> assistant -collectionFile %BUILDDIR%\qthelp\{nice_title_no_spaces}.qhc
+	echo.^> assistant -collectionFile %BUILDDIR%\qthelp\${nice_title_no_spaces}.qhc
 	goto end
 )
 

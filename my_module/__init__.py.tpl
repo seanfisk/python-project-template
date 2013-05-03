@@ -1,4 +1,4 @@
-""":mod:`{title}` -- {description}
+""":mod:`$title` -- $description
 """
 
 import metadata

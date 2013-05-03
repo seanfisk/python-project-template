@@ -3,7 +3,7 @@
 # My Awesome Module distutils setup script
 
 import os
-from {title} import metadata
+from $title import metadata
 
 # auto-install and download distribute
 import distribute_setup
@@ -55,11 +55,11 @@ setup(name=metadata.title,
       zip_safe=False, # don't use eggs
       entry_points={
           'console_scripts': [
-              '{title}_cli = {title}.main:main'
+              '${title}_cli = ${title}.main:main'
           ],
           # if you have a gui, use this
           # 'gui_scripts': [
-          #     '{title}_gui = {title}.gui:main'
+          #     '${title}_gui = ${title}.gui:main'
           # ]
       }
       )

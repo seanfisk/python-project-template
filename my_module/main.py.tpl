@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-""":mod:`{title}.main` -- Program entry point
+""":mod:`${title}.main` -- Program entry point
 """
 
 from __future__ import print_function
 import sys
 import argparse
-from {title} import metadata
+from $title import metadata
 
 def main(argv=None):
     if argv is None:

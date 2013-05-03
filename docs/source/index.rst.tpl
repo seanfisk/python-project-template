@@ -1,5 +1,5 @@
-{nice_title}
-============
+$nice_title
+===========
 
 Contents:
 
