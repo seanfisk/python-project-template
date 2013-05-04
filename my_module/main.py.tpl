@@ -8,7 +8,7 @@ import argparse
 from $title import metadata
 
 
-def main(argv):
+def _main(argv):
     """Program entry point.
 
     :param argv: command-line arguments
@@ -30,13 +30,26 @@ URL: <{url}>
         url=metadata.url)
 
     arg_parser = argparse.ArgumentParser(
+        prog=argv[0],
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=metadata.description,
         epilog=epilog)
+    arg_parser.add_argument(
+        '-v', '--version',
+        action='version',
+        version='{0} {1}'.format(metadata.nice_title, metadata.version))
 
     arg_parser.parse_args(args=argv[1:])
 
     print(epilog)
 
+    return 0
+
+
+def main():
+    """Main for use with setuptools/distribute."""
+    raise SystemExit(_main(sys.argv))
+
+
 if __name__ == '__main__':
-    raise SystemExit(main(sys.argv))
+    main()
