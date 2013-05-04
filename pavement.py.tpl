@@ -146,6 +146,16 @@ def _test_all():
     return _lint() + _test()
 
 
+def _big_text(text):
+    """Render huge ASCII text.
+
+    :return: the formatted text
+    :rtype: :class:`str`
+    """
+    from pyfiglet import Figlet
+    return Figlet(font='starwars').renderText(text)
+
+
 ## Tasks
 
 @task
@@ -168,11 +178,9 @@ def test_all():
     """Perform a style check and run all unit tests."""
     retcode = _test_all()
     if retcode == 0:
-        text = 'PASSED'
+        print_success_message(_big_text('PASSED'))
     else:
-        text = 'FAILED'
-    from pyfiglet import Figlet
-    print_success_message(Figlet(font='starwars').renderText(text))
+        print_failure_message(_big_text('FAILED'))
     raise SystemExit(retcode)
 
 
