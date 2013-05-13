@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-""":mod:`${title}.main` -- Program entry point
+""":mod:`${package}.main` -- Program entry point
 """
 
 from __future__ import print_function
 import sys
 import argparse
-from $title import metadata
+from $package import metadata
 
 
 def _main(argv):
@@ -19,12 +19,12 @@ def _main(argv):
         author_strings.append('Author: {0} <{1}>'.format(name, email))
 
     epilog = '''
-{title} {version}
+{project} {version}
 
 {authors}
 URL: <{url}>
 '''.format(
-        title=metadata.nice_title,
+        project=metadata.project,
         version=metadata.version,
         authors='\n'.join(author_strings),
         url=metadata.url)
@@ -37,7 +37,7 @@ URL: <{url}>
     arg_parser.add_argument(
         '-v', '--version',
         action='version',
-        version='{0} {1}'.format(metadata.nice_title, metadata.version))
+        version='{0} {1}'.format(metadata.project, metadata.version))
 
     arg_parser.parse_args(args=argv[1:])
 

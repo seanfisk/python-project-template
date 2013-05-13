@@ -1,8 +1,8 @@
 import pytest
-from mock import patch, call, MagicMock, create_autospec, sentinel
+from mock import patch, call
 
-from $title import metadata
-from ${title}.main import _main
+from $package import metadata
+from ${package}.main import _main
 
 
 @pytest.fixture(params=['-h', '--help'])
@@ -39,4 +39,4 @@ class TestMain:
             with pytest.raises(Exception):
                 _main(['progname', versionarg])
         out, err = capsys.readouterr()
-        assert err == '{0} {1}\n'.format(metadata.nice_title, metadata.version)
+        assert err == '{0} {1}\n'.format(metadata.project, metadata.version)

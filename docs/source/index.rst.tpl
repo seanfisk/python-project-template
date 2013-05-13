@@ -1,5 +1,5 @@
-$nice_title
-$docs_title_underline
+$project
+$project_underline
 
 Contents:
 

@@ -13,10 +13,10 @@ sys.path.append('my_module')
 # Can't use `from my_module import metadata' since `__init__.py' is templated.
 import metadata
 
-# The title of the main documentation should match the title in the
+# The title of the main documentation should match the project name in the
 # metadata. Under it should be a matching underline of equal signs. Produce it
 # for the template.
-docs_title_underline = len(metadata.title) * '='
+project_underline = len(metadata.project) * '='
 
 # Substitute values into template files and produce their real counterparts.
 for dirpath, dirnames, filenames in os.walk('.'):
@@ -39,11 +39,14 @@ for dirpath, dirnames, filenames in os.walk('.'):
         print('Substituting', tpl_path, '->', real_path)
         with open(real_path, 'w') as real_file:
             real_file.write(template.safe_substitute(
-                docs_title_underline=docs_title_underline,
+                project_underline=project_underline,
                 **metadata.__dict__))
 
         # Remove the template file.
         os.remove(tpl_path)
 
-# Rename the package.
-os.rename('my_module', metadata.title)
+print('Renaming the package: my_module ->', metadata.package)
+os.rename('my_module', metadata.package)
+
+print('Generation script imploding...')
+os.remove(__file__)

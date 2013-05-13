@@ -15,10 +15,10 @@ import colorama
 colorama.init()  # Initialize colorama on Windows
 
 sys.path.append('.')
-from $title import metadata
+from $package import metadata
 
 ## Constants
-CODE_DIRECTORY = '$title'
+CODE_DIRECTORY = '$package'
 TESTS_DIRECTORY = 'tests'
 
 ## Miscellaneous helper functions
@@ -61,7 +61,7 @@ options(
     # see here for more options:
     # <http://packages.python.org/distribute/setuptools.html>
     setup=dict(
-        name=metadata.title,
+        name=metadata.project,
         version=metadata.version,
         author=metadata.authors[0],
         author_email=metadata.emails[0],
@@ -91,11 +91,11 @@ options(
         zip_safe=False,  # don't use eggs
         entry_points={
             'console_scripts': [
-                '${title}_cli = ${title}.main:main'
+                '${package}_cli = ${package}.main:main'
             ],
             # if you have a gui, use this
             # 'gui_scripts': [
-            #     '${title}_gui = ${title}.gui:main'
+            #     '${package}_gui = ${package}.gui:main'
             # ]
         }
     ),

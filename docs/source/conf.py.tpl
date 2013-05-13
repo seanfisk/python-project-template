@@ -22,7 +22,7 @@ import os
 sys.path.insert(0, os.path.abspath('../..'))
 
 # Import project metadata
-from $title import metadata
+from $package import metadata
 
 # -- General configuration ----------------------------------------------------
 
@@ -50,7 +50,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = metadata.nice_title
+project = metadata.project
 copyright = metadata.copyright
 
 # The version info for the project you're documenting, acts as replacement for
@@ -175,7 +175,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = metadata.nice_title_no_spaces + 'doc'
+htmlhelp_basename = metadata.project_no_spaces + 'doc'
 
 
 # -- Options for LaTeX output -------------------------------------------------
@@ -195,8 +195,8 @@ latex_elements = {
 # (source start file, target name, title, author,
 # documentclass [howto/manual]).
 latex_documents = [
-    ('index', metadata.nice_title_no_spaces + '.tex',
-     metadata.nice_title + ' Documentation', metadata.authors_string,
+    ('index', metadata.project_no_spaces + '.tex',
+     metadata.project + ' Documentation', metadata.authors_string,
      'manual'),
 ]
 
@@ -226,7 +226,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', metadata.title, metadata.nice_title + ' Documentation',
+    ('index', metadata.package, metadata.project + ' Documentation',
      metadata.authors_string, 1)
 ]
 
@@ -240,9 +240,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', metadata.nice_title_no_spaces,
-     metadata.nice_title + ' Documentation', metadata.authors_string,
-     metadata.nice_title_no_spaces, metadata.description, 'Miscellaneous'),
+    ('index', metadata.project_no_spaces,
+     metadata.project + ' Documentation', metadata.authors_string,
+     metadata.project_no_spaces, metadata.description, 'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.

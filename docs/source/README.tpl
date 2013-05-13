@@ -1,5 +1,5 @@
-Run `sphinx-apidoc -o . ../../$title' in this directory.
+Run `sphinx-apidoc -o . ../../$package' in this directory.
 
-This will generate `modules.rst' and `${title}.rst'.
+This will generate `modules.rst' and `${package}.rst'.
 
 Then include `modules.rst' in your `index.rst' file.
