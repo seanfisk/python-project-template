@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8; -*-
 
 # This script replaces all template files with a real file with contents
 # properly substituted.
@@ -8,25 +7,43 @@ from __future__ import print_function
 import os
 import sys
 import os.path
-import subprocess
 from string import Template
 
 sys.path.append('my_module')
 # Can't use `from my_module import metadata' since `__init__.py' is templated.
 import metadata
 
+# The title of the main documentation should match the title in the
+# metadata. Under it should be a matching underline of equal signs. Produce it
+# for the template.
+docs_title_underline = len(metadata.title) * '='
 
-def only_tpl(filename):
-    return os.path.splitext(filename)[1] == '.tpl'
+# Substitute values into template files and produce their real counterparts.
+for dirpath, dirnames, filenames in os.walk('.'):
+    # Don't recurse into git directory.
+    if '.git' in dirnames:
+        dirnames.remove('.git')
 
-git_file_names = subprocess.check_output(['git', 'ls-files']).splitlines()
-tpl_file_names = filter(only_tpl, git_file_names)
+    for filename in filenames:
+        # Ignore all non-template files.
+        # Using splitext cuts off the last extension.
+        root, extension = os.path.splitext(filename)
+        if extension != '.tpl':
+            continue
 
-for tpl_file_name in tpl_file_names:
-    with open(tpl_file_name) as tpl_file:
-        template = Template(tpl_file.read())
-    # Using splitext cuts off the last extension.
-    real_file_name = os.path.splitext(tpl_file_name)[0]
-    print('Subsituting', tpl_file_name, '→', real_file_name)
-    with open(real_file_name, 'w') as real_file:
-        real_file.write(template.safe_substitute(**metadata.__dict__))
+        # Substitute values and write the new file.
+        tpl_path = os.path.join(dirpath, filename)
+        real_path = os.path.join(dirpath, root)
+        with open(tpl_path) as tpl_file:
+            template = Template(tpl_file.read())
+        print('Substituting', tpl_path, '->', real_path)
+        with open(real_path, 'w') as real_file:
+            real_file.write(template.safe_substitute(
+                docs_title_underline=docs_title_underline,
+                **metadata.__dict__))
+
+        # Remove the template file.
+        os.remove(tpl_path)
+
+# Rename the package.
+os.rename('my_module', metadata.title)

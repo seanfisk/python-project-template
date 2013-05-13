@@ -1,5 +1,5 @@
 $nice_title
-===========
+$docs_title_underline
 
 Contents:
 
