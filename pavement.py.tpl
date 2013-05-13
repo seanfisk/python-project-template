@@ -265,13 +265,21 @@ def doc_watch():
 @task
 @needs(['html'])
 def doc_open():
-    ('Build the HTML docs and open them in a web browser '
-     '(Mac OS X and GNOME only).')
-    build_path = 'docs/build/html/index.html'
-    try:
-        subprocess.check_call(['gnome-open', build_path])
-    except OSError:
-        subprocess.check_call(['open', build_path])
+    """Build the HTML docs and open them in a web browser."""
+    doc_index = 'docs/build/html/index.html'
+    if sys.platform == 'darwin':
+        # Mac OS X
+        subprocess.check_call(['open', doc_index])
+    elif sys.platform == 'win32':
+        # Windows
+        subprocess.check_call(['start', doc_index], shell=True)
+    elif sys.platform == 'linux2':
+        # All freedesktop-compatible desktops
+        subprocess.check_call(['xdg-open', doc_index])
+    else:
+        print_failure_message(
+            "Unsupported platform. Please open `{0}' manually.".format(
+                doc_index))
 
 
 @task
