@@ -1,3 +1,7 @@
+=========================
+ Python Project Template
+=========================
+
 This project provides a template Python project for using several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
 As it is my template project, the tools are rather opinionated. Tools used include:
@@ -16,14 +20,13 @@ As it is my template project, the tools are rather opinionated. Tools used inclu
 .. _pytest: http://pytest.org/latest/
 .. _mock: http://www.voidspace.org.uk/python/mock/
 
-===============
- Project Setup
-===============
+Project Setup
+=============
 
 This will be the README for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this README with contents specific to your project.
 
 Instructions
-============
+------------
 
 #. Clone the template project and remove the git history::
 
@@ -44,7 +47,7 @@ Instructions
 #. Replace this README with your own text.
 
 Using Paver
-===========
+-----------
 
 The ``pavement.py`` file comes with a number of tasks already set up for you. You can see a full list by typing ``paver help`` in the project root directory. The following are included::
 
@@ -62,8 +65,7 @@ For example, to run the both the unit tests and lint, run the following in the p
 
     paver test_all
 
-========
- Issues
-========
+Issues
+======
 
 Please report any bugs or requests that you have using the Github issue tracker!
