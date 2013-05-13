@@ -63,7 +63,22 @@ The ``pavement.py`` file comes with a number of tasks already set up for you. Yo
 
 For example, to run the both the unit tests and lint, run the following in the project root directory::
 
-    paver test_all
+    $ paver test_all
+    ---> pavement.test_all
+    No style errors
+    ========================================= test session starts =========================================
+    platform darwin -- Python 2.7.3 -- pytest-2.3.4
+    collected 5 items
+
+    tests/test_main.py .....
+
+    ====================================== 5 passed in 0.05 seconds =======================================
+    .______      ___           _______.     _______. _______  _______
+    |   _  \    /   \         /       |    /       ||   ____||       \
+    |  |_)  |  /  ^  \       |   (----`   |   (----`|  |__   |  .--.  |
+    |   ___/  /  /_\  \       \   \        \   \    |   __|  |  |  |  |
+    |  |     /  _____  \  .----)   |   .----)   |   |  |____ |  '--'  |
+    | _|    /__/     \__\ |_______/    |_______/    |_______||_______/
 
 Issues
 ======
