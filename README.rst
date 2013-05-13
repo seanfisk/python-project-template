@@ -1,45 +1,69 @@
-This project provides a template Python project for using distutils for
-distribution and Sphinx for documentation. It saves you work by setting a number
-of things up for you, including project directory structure, a basic Distutils
-setup script, Sphinx configuration with the `Flask theme`_, and a project
-metadata setup which applies to the Distutils script, Sphinx configuration, and
-can also be used inside your project.
+This project provides a template Python project for using several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
-.. _Flask theme: https://github.com/mitsuhiko/flask-sphinx-themes
+As it is my template project, the tools are rather opinionated. Tools used include:
+
+* Paver_ for running miscellaneous tasks
+* Distribute_ for distribution
+* Sphinx_ for documentation
+* flake8_ for source code checking
+* pytest_ for unit testing
+* mock_ for mocking
+
+.. _Paver: http://paver.github.io/paver/
+.. _Distribute: http://pythonhosted.org/distribute/
+.. _Sphinx: http://sphinx-doc.org/
+.. _flake8: https://pypi.python.org/pypi/flake8
+.. _pytest: http://pytest.org/latest/
+.. _mock: http://www.voidspace.org.uk/python/mock/
 
 ===============
  Project Setup
 ===============
 
-This will be the README for your project. For now, follow these instructions to
-get this project template setup correctly. Then, come back an replace the
-contents of this README with contents specific to your project.
+This will be the README for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this README with contents specific to your project.
 
 Instructions
 ============
 
-#. Edit the metadata file ``my_module/metadata.py`` to correctly describe your
-   project.
+#. Clone the template project and remove the git history::
 
-#. Edit ``setup.py`` to import from your module and edit the ``classifiers``,
-   ``packages``, and ``scripts`` keywords as necessary.
+        git clone https://github.com/seanfisk/python-project-template.git
+        cd python-project-template
+        rm -rf .git
 
-#. Tell Sphinx to pull docstrings out of your module::
+#. Edit the metadata file ``my_module/metadata.py`` to correctly describe your project. Don't forget to correct the docstring.
 
-       sphinx-apidoc -o . ../../my_new_module
+#. Generate files based upon the project metadata you just entered::
 
-   It will be necessary to re-run this every time a new module is added to your
-   package. You must delete the old files as ``sphinx-apidoc`` will not
-   overwrite them.
+        python GENERATE.py
 
-#. Now come back and replace this README with your own text.
+   The generation script will remove all the template files and generate real files, then self-destruct upon completion.
 
-Notes
-=====
+#. Edit ``pavement.py`` to change the ``classifiers`` keyword as necessary.
 
-``my_module`` is used as the generic name for your Python module throughout the
-skeleton. You should replace it with your module name. The instructions should
-guide you through most of the necessary renames. However, to make sure there are
-no instances left, you can run this command in your project root::
+#. Replace this README with your own text.
 
-    grep -F --recursive my_module .
+Using Paver
+===========
+
+The ``pavement.py`` file comes with a number of tasks already set up for you. You can see a full list by typing ``paver help`` in the project root directory. The following are included::
+
+    Tasks from pavement:
+    lint             - Perform PEP8 style check, run PyFlakes, and run McCabe complexity metrics on the code.
+    doc_open         - Build the HTML docs and open them in a web browser.
+    coverage         - Run tests and show test coverage report.
+    doc_watch        - Watch for changes in the Sphinx documentation and rebuild when changed.
+    test             - Run the unit tests.
+    get_tasks        - Get all paver-defined tasks.
+    commit           - Commit only if all the tests pass.
+    test_all         - Perform a style check and run all unit tests.
+
+For example, to run the both the unit tests and lint, run the following in the project root directory::
+
+    paver test_all
+
+========
+ Issues
+========
+
+Please report any bugs or requests that you have using the Github issue tracker!
