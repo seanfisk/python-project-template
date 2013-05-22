@@ -209,7 +209,7 @@ def coverage():
                      TESTS_DIRECTORY])
 
 
-@task
+@task  # NOQA
 def doc_watch():
     ('Watch for changes in the Sphinx documentation and rebuild when '
      'changed.')
