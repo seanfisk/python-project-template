@@ -35,8 +35,23 @@ def read(filename):
 
 
 def get_project_files():
-    # Use `git ls-files' to get all files tracked in this project.
-    return subprocess.check_output(['git', 'ls-files']).splitlines()
+    """Retrieve a list of all non-ignored files, including untracked files,
+    excluding deleted files.
+
+    :return: sorted list of project files
+    """
+
+    cached_and_untracked_files = git_ls_files(
+        '--cached', '--others', '--exclude-standard')
+    uncommitted_deleted_files = git_ls_files('--deleted')
+
+    return sorted(cached_and_untracked_files - uncommitted_deleted_files)
+
+
+def git_ls_files(*cmd_args):
+    cmd = ['git', 'ls-files']
+    cmd.extend(cmd_args)
+    return set(subprocess.check_output(cmd).splitlines())
 
 
 def print_success_message(message):
@@ -115,8 +130,6 @@ def _lint():
     # Flake8 doesn't have an easy way to run checks using a Python function, so
     # just fork off another process to do it.
 
-    # Only check version controlled files by using `git ls-files'. This avoids
-    # checking generated files, such as PySide's resource files.
     git_python_files = filter(
         lambda filename: filename.endswith('.py'),
         get_project_files())
