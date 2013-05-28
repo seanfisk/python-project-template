@@ -33,10 +33,14 @@ TESTS_DIRECTORY = 'tests'
 def read(filename):
     """Return the contents of a file name.
 
+    :param filename: name of the file
+    :type filename: :class:`str`
     :return: contents of file
     :rtype: :class:`str`
     """
-    return open(os.path.join(os.path.dirname(__file__), filename)).read()
+    with open(os.path.join(os.path.dirname(__file__), filename)) as f:
+        contents = f.read()
+    return contents
 
 
 def get_project_files():
