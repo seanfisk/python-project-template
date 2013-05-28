@@ -4,7 +4,7 @@
 
 This project provides a template Python project for using several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
-As it is my template project, the tools are rather opinionated. Tools used include:
+As it is a personal template project, the tools are rather opinionated. Tools used include:
 
 * Paver_ for running miscellaneous tasks
 * Distribute_ for distribution
@@ -84,3 +84,9 @@ Issues
 ======
 
 Please report any bugs or requests that you have using the Github issue tracker!
+
+Authors
+=======
+
+* Sean Fisk
+* Benjamin Schwarze
