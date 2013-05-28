@@ -31,6 +31,11 @@ TESTS_DIRECTORY = 'tests'
 # README file and 2) it's easier to type in the README file than to
 # put a raw string in below ...
 def read(filename):
+    """Return the contents of a file name.
+
+    :return: contents of file
+    :rtype: :class:`str`
+    """
     return open(os.path.join(os.path.dirname(__file__), filename)).read()
 
 
@@ -39,6 +44,7 @@ def get_project_files():
     excluding deleted files.
 
     :return: sorted list of project files
+    :rtype: :class:`list`
     """
     cached_and_untracked_files = git_ls_files(
         '--cached',  # All files cached in the index
@@ -53,6 +59,12 @@ def get_project_files():
 
 
 def git_ls_files(*cmd_args):
+    """Run ``git ls-files`` in the top-level project directory. Arguments go
+    directly to execution call.
+
+    :return: set of file names
+    :rtype: :class:`set`
+    """
     cmd = ['git', 'ls-files']
     cmd.extend(cmd_args)
     return set(subprocess.check_output(cmd).splitlines())
