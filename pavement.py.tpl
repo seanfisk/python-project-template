@@ -40,11 +40,15 @@ def get_project_files():
 
     :return: sorted list of project files
     """
-
     cached_and_untracked_files = git_ls_files(
-        '--cached', '--others', '--exclude-standard')
+        '--cached',  # All files cached in the index
+        '--others',  # Untracked files
+        # Exclude untracked files that would be excluded by .gitignore, etc.
+        '--exclude-standard')
     uncommitted_deleted_files = git_ls_files('--deleted')
 
+    # Since sorting of files in a set is arbitrary, return a sorted list to
+    # provide a well-defined order to tools like flake8, etc.
     return sorted(cached_and_untracked_files - uncommitted_deleted_files)
 
 
