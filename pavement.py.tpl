@@ -137,7 +137,10 @@ options(
     sphinx=Bunch(
         builddir='build',
         sourcedir='source',
-    )
+    ),
+    minilib=Bunch(
+        extra_files=['doctools'],
+    ),
 )
 
 install_distutils_tasks()
