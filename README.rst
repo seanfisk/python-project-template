@@ -30,8 +30,8 @@ Instructions
 
 #. Clone the template project and remove the git history::
 
-        git clone https://github.com/seanfisk/python-project-template.git
-        cd python-project-template
+        git clone https://github.com/seanfisk/python-project-template.git my-module
+        cd my-module
         rm -rf .git
 
 #. Edit the metadata file ``my_module/metadata.py`` to correctly describe your project. Don't forget to correct the docstring.
