@@ -96,7 +96,7 @@ options(
     # see here for more options:
     # <http://packages.python.org/distribute/setuptools.html>
     setup=dict(
-        name=metadata.project,
+        name=metadata.package,
         version=metadata.version,
         author=metadata.authors[0],
         author_email=metadata.emails[0],
@@ -190,6 +190,13 @@ def _big_text(text):
 
 
 ## Tasks
+
+@task
+@needs('html', 'minilib', 'generate_setup', 'setuptools.command.sdist')
+def sdist():
+    """Builds the documentation and the tarball."""
+    pass
+
 
 @task
 def test():

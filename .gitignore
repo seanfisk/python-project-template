@@ -30,3 +30,7 @@ pip-log.txt
 
 ## Translations
 *.mo
+
+## paver generated files
+/setup.py
+/paver-minilib.zip

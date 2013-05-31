@@ -1,0 +1,6 @@
+include README.rst
+recursive-include docs *
+recursive-include tests *
+include pavement.py
+include setup.py
+include paver-minilib.zip
