@@ -13,5 +13,5 @@ authors = ['Foo Bar', 'John Doe']
 authors_string = ', '.join(authors)
 emails = ['foobar@example.com', 'johndoe@thisisfake.org']
 license = 'MIT'
-copyright = '2012 ' + authors_string
+copyright = '2013 ' + authors_string
 url = 'http://example.com/'
