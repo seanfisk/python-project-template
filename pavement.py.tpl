@@ -11,8 +11,14 @@ from paver.easy import options, task, Bunch, needs
 from paver.setuputils import install_distutils_tasks
 import paver.doctools
 
-import colorama
-colorama.init()  # Initialize colorama on Windows
+try:
+    import colorama
+    colorama.init()  # Initialize colorama on Windows
+except ImportError:
+    # Don't require colorama just for running paver tasks. This allows us to
+    # run `paver install' without requiring the user to first have colorama
+    # installed.
+    pass
 
 sys.path.append('.')
 from $package import metadata
@@ -80,7 +86,11 @@ def print_success_message(message):
     :param message: the message to print
     :type message: :class:`str`
     """
-    print(colorama.Fore.GREEN + message + colorama.Fore.RESET)
+    try:
+        import colorama
+        print(colorama.Fore.GREEN + message + colorama.Fore.RESET)
+    except ImportError:
+        print(message)
 
 
 def print_failure_message(message):
@@ -89,7 +99,12 @@ def print_failure_message(message):
     :param message: the message to print
     :type message: :class:`str`
     """
-    print(colorama.Fore.RED + message + colorama.Fore.RESET, file=sys.stderr)
+    try:
+        import colorama
+        print(colorama.Fore.RED + message + colorama.Fore.RESET,
+              file=sys.stderr)
+    except ImportError:
+        print(message, file=sys.stderr)
 
 
 options(
