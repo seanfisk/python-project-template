@@ -4,10 +4,11 @@
 # properly substituted.
 
 from __future__ import print_function
+
 import os
-import sys
 import os.path
 from string import Template
+import sys
 
 sys.path.append('my_module')
 # Can't use `from my_module import metadata' since `__init__.py' is templated.
