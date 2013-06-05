@@ -5,6 +5,7 @@ paver
 flake8
 pytest
 mock
+tox
 
 # Used for paver output
 colorama
