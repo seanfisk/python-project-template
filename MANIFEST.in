@@ -4,4 +4,3 @@ recursive-include tests *
 recursive-include requirements *
 include pavement.py
 include setup.py
-include paver-minilib.zip
