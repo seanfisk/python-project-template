@@ -1,9 +1,1 @@
 Sphinx
-paver
-flake8
-pytest
-mock
-
-# Used for paver output
-colorama
-pyfiglet

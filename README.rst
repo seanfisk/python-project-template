@@ -2,6 +2,9 @@
  Python Project Template
 =========================
 
+.. image:: https://travis-ci.org/seanfisk/python-project-template.png
+   :target: https://travis-ci.org/seanfisk/python-project-template
+
 This project provides a template Python project for using several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
 As it is a personal template project, the tools are rather opinionated. Tools used include:
