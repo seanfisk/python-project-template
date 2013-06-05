@@ -48,5 +48,8 @@ for dirpath, dirnames, filenames in os.walk('.'):
 print('Renaming the package: my_module ->', metadata.package)
 os.rename('my_module', metadata.package)
 
+print('Removing internal Travis-CI test file...')
+os.remove('.travis.yml')
+
 print('Generation script imploding...')
 os.remove(__file__)
