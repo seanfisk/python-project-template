@@ -38,8 +38,11 @@ setup_dict = dict(
         'Topic :: System :: Installation/Setup',
         'Topic :: System :: Software Distribution',
     ],
-    packages=['$package'],
-    install_requires=['argparse'],
+    packages=find_packages(),
+    install_requires=[
+        'argparse',  # argparse is in the Python >= 2.7 standard library
+                     # this is for Python 2.6 compatibility
+    ],
     zip_safe=False,  # don't use eggs
     entry_points={
         'console_scripts': [
