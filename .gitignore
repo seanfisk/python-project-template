@@ -32,5 +32,4 @@ pip-log.txt
 *.mo
 
 ## paver generated files
-/setup.py
 /paver-minilib.zip
