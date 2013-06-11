@@ -15,7 +15,7 @@ def versionarg(request):
     return request.param
 
 
-class TestMain:
+class TestMain(object):
     def test_help(self, helparg, capsys):
         with patch('sys.exit', autospec=True, spec_set=True) as mock_exit:
             mock_exit.side_effect = Exception(
