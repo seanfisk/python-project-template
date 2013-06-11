@@ -15,6 +15,7 @@ As it is a personal template project, the tools are rather opinionated. Tools us
 * flake8_ for source code checking
 * pytest_ for unit testing
 * mock_ for mocking
+* tox_ for installing and testing on multiple Python versions
 
 .. _Paver: http://paver.github.io/paver/
 .. _Distribute: http://pythonhosted.org/distribute/
@@ -22,6 +23,7 @@ As it is a personal template project, the tools are rather opinionated. Tools us
 .. _flake8: https://pypi.python.org/pypi/flake8
 .. _pytest: http://pytest.org/latest/
 .. _mock: http://www.voidspace.org.uk/python/mock/
+.. _tox: http://testrun.org/tox/latest/
 
 Project Setup
 =============
@@ -83,10 +85,28 @@ For example, to run the both the unit tests and lint, run the following in the p
     |  |     /  _____  \  .----)   |   .----)   |   |  |____ |  '--'  |
     | _|    /__/     \__\ |_______/    |_______/    |_______||_______/
 
+Using Tox
+---------
+
+Tox is a tool for running your tests on all supported Python versions.
+Running it via ``tox`` from the project root directory calls ``paver test_all`` behind the scenes for each Python version,
+and does an additional test run to ensure documentation generation works flawlessly.
+You can customize the list of supported and thus tested Python versions in the ``tox.ini`` file.
+
 Issues
 ======
 
 Please report any bugs or requests that you have using the Github issue tracker!
+
+Supported Python Versions
+=========================
+
+Python Project Template supports the following versions out of the box:
+
+* CPython 2.6, 2.7
+* PyPy 1.9
+
+There are also plans to support CPython 3.3 in the future.
 
 Authors
 =======
