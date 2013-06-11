@@ -1,0 +1,13 @@
+# documentation
+Sphinx
+
+# task runner
+paver
+colorama
+pyfiglet
+
+# testing
+flake8
+mock
+pytest
+tox

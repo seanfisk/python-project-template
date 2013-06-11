@@ -1,5 +1,0 @@
-# Packages required to run the project
-
-# argparse is in the Python >= 2.7 standard library
-# This is for Python 2.6 compatibility
-argparse

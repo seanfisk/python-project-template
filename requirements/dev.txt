@@ -1,5 +1,0 @@
-# Packages required to develop the project
-
---requirement test.txt
-
-Sphinx
