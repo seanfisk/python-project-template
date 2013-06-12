@@ -4,7 +4,6 @@ Sphinx
 # task runner
 paver
 colorama
-pyfiglet
 
 # testing
 flake8
