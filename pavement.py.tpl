@@ -75,20 +75,20 @@ def git_ls_files(*cmd_args):
 
 def print_passed():
     # generated on http://patorjk.com/software/taag/#p=display&f=Small&t=PASSED
-    print_success_message(r'  ___  _   ___ ___ ___ ___  ')
-    print_success_message(r' | _ \/_\ / __/ __| __|   \ ')
-    print_success_message(r' |  _/ _ \\__ \__ \ _|| |) |')
-    print_success_message(r' |_|/_/ \_\___/___/___|___/ ')
-    print_success_message(r'                            ')
+    print_success_message(r'''  ___  _   ___ ___ ___ ___
+ | _ \/_\ / __/ __| __|   \
+ |  _/ _ \\__ \__ \ _|| |) |
+ |_|/_/ \_\___/___/___|___/
+''')
 
 
 def print_failed():
     # generated on http://patorjk.com/software/taag/#p=display&f=Small&t=FAILED
-    print_failure_message(r'  ___ _   ___ _    ___ ___  ')
-    print_failure_message(r' | __/_\ |_ _| |  | __|   \ ')
-    print_failure_message(r' | _/ _ \ | || |__| _|| |) |')
-    print_failure_message(r' |_/_/ \_\___|____|___|___/ ')
-    print_failure_message(r'                            ')
+    print_failure_message(r'''  ___ _   ___ _    ___ ___
+ | __/_\ |_ _| |  | __|   \
+ | _/ _ \ | || |__| _|| |) |
+ |_/_/ \_\___|____|___|___/
+''')
 
 
 def print_success_message(message):
