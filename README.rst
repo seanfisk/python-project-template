@@ -107,6 +107,11 @@ Python Project Template supports the following versions out of the box:
 
 There are also plans to support CPython 3.3 in the future.
 
+License
+=======
+
+The code which makes up this Python project template is licensed under the MIT/X11 license. Feel free to use it in your free software/open-source or proprietary projects.
+
 Authors
 =======
 
