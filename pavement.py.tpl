@@ -73,6 +73,24 @@ def git_ls_files(*cmd_args):
     return set(subprocess.check_output(cmd).splitlines())
 
 
+def print_passed():
+    # generated on http://patorjk.com/software/taag/#p=display&f=Small&t=PASSED
+    print_success_message(r'''  ___  _   ___ ___ ___ ___
+ | _ \/_\ / __/ __| __|   \
+ |  _/ _ \\__ \__ \ _|| |) |
+ |_|/_/ \_\___/___/___|___/
+''')
+
+
+def print_failed():
+    # generated on http://patorjk.com/software/taag/#p=display&f=Small&t=FAILED
+    print_failure_message(r'''  ___ _   ___ _    ___ ___
+ | __/_\ |_ _| |  | __|   \
+ | _/ _ \ | || |__| _|| |) |
+ |_/_/ \_\___|____|___|___/
+''')
+
+
 def print_success_message(message):
     """Print a message indicating success in green color to STDOUT.
 
@@ -152,16 +170,6 @@ def _test_all():
     return _lint() + _test()
 
 
-def _big_text(text):
-    """Render huge ASCII text.
-
-    :return: the formatted text
-    :rtype: :class:`str`
-    """
-    from pyfiglet import Figlet
-    return Figlet(font='starwars').renderText(text)
-
-
 ## Tasks
 
 @task
@@ -191,9 +199,9 @@ def test_all():
     """Perform a style check and run all unit tests."""
     retcode = _test_all()
     if retcode == 0:
-        print_success_message(_big_text('PASSED'))
+        print_passed()
     else:
-        print_failure_message(_big_text('FAILED'))
+        print_failed()
     raise SystemExit(retcode)
 
 
