@@ -29,7 +29,7 @@ setup_dict = dict(
         'Development Status :: 1 - Planning',
         'Environment :: Console',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: ISC License (ISCL)',
+        'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
