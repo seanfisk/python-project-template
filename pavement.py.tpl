@@ -38,6 +38,7 @@ from setup import setup_dict
 ## Constants
 CODE_DIRECTORY = '$package'
 TESTS_DIRECTORY = 'tests'
+PYTEST_FLAGS = ['--doctest-modules']
 
 ## Miscellaneous helper functions
 
@@ -159,7 +160,7 @@ def _test():
     import pytest
     # This runs the unit tests.
     # It also runs doctest, but only on the modules in TESTS_DIRECTORY.
-    return pytest.main(['--doctest-modules', TESTS_DIRECTORY])
+    return pytest.main(PYTEST_FLAGS + [TESTS_DIRECTORY])
 
 
 def _test_all():
@@ -225,9 +226,10 @@ def coverage():
             "i.e., `pip install pytest-cov'.")
         raise SystemExit(1)
     import pytest
-    pytest.main(['--cov', CODE_DIRECTORY,
-                 '--cov-report', 'term-missing',
-                 TESTS_DIRECTORY])
+    pytest.main(PYTEST_FLAGS + [
+        '--cov', CODE_DIRECTORY,
+        '--cov-report', 'term-missing',
+        TESTS_DIRECTORY])
 
 
 @task  # NOQA
