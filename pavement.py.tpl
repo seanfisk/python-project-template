@@ -224,10 +224,10 @@ def coverage():
             'Install the pytest coverage plugin to use this task, '
             "i.e., `pip install pytest-cov'.")
         raise SystemExit(1)
-        import pytest
-        pytest.main(['--cov', CODE_DIRECTORY,
-                     '--cov-report', 'term-missing',
-                     TESTS_DIRECTORY])
+    import pytest
+    pytest.main(['--cov', CODE_DIRECTORY,
+                 '--cov-report', 'term-missing',
+                 TESTS_DIRECTORY])
 
 
 @task  # NOQA
