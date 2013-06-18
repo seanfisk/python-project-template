@@ -47,7 +47,7 @@ Instructions
 
    The generation script will remove all the template files and generate real files, then self-destruct upon completion.
 
-#. Edit ``pavement.py`` to change the ``classifiers`` keyword as necessary.
+#. Edit ``setup.py`` to change the ``classifiers`` keyword as necessary.
 
 #. Replace this README with your own text.
 
