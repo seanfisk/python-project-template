@@ -35,6 +35,7 @@ for dirpath, dirnames, filenames in os.walk('.'):
         # Substitute values and write the new file.
         tpl_path = os.path.join(dirpath, filename)
         real_path = os.path.join(dirpath, root)
+
         with open(tpl_path) as tpl_file:
             template = Template(tpl_file.read())
         print('Substituting', tpl_path, '->', real_path)
