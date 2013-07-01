@@ -53,5 +53,26 @@ os.rename('my_module', metadata.package)
 print('Removing internal Travis-CI test file...')
 os.remove('.travis.yml')
 
+print('Removing template project license...')
+os.remove('LICENSE.this-template-project')
+
+print("Revising `LICENSE' file...")
+# Open file for reading and writing.
+with open('LICENSE', 'r+') as license_file:
+    # Strip off the first two lines.
+    new_contents = ''.join(license_file.readlines()[2:])
+    license_file.seek(0)
+    print(new_contents, file=license_file)
+
 print('Generation script imploding...')
 os.remove(__file__)
+
+print('''
+To finish project setup:
+
+1. Change the `classifiers' keyword in `setup.py' as necessary.
+2. Change the license in `setup.py' and replace the generated `LICENSE' file
+   with the one of your choice. If you would like to use the MIT license, no
+   change is necessary.
+3. Change `README.rst' to your own text.
+''')

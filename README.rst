@@ -48,7 +48,9 @@ Instructions
 
    The generation script will remove all the template files and generate real files, then self-destruct upon completion.
 
-#. Edit ``setup.py`` to change the ``classifiers`` keyword as necessary.
+#. Change the ``classifiers`` keyword in ``setup.py`` as necessary (this will require changing).
+
+#. Change the license in ``setup.py`` and replace the generated ``LICENSE`` file with the one of your choice. If you would like to use the MIT license, no change is necessary.
 
 #. Replace this README with your own text.
 
