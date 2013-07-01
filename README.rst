@@ -5,12 +5,12 @@
 .. image:: https://travis-ci.org/seanfisk/python-project-template.png
    :target: https://travis-ci.org/seanfisk/python-project-template
 
-This project provides a template Python project for using several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
+This project provides a best-practices template Python project which integrates several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
-As it is a personal template project, the tools are rather opinionated. Tools used include:
+As it is a personal template project, the tools use are rather opinionated. They include:
 
 * Paver_ for running miscellaneous tasks
-* Distribute_ for distribution
+* Distribute_ for distribution (will soon be updated to Setuptools_)
 * Sphinx_ for documentation
 * flake8_ for source code checking
 * pytest_ for unit testing
@@ -19,6 +19,7 @@ As it is a personal template project, the tools are rather opinionated. Tools us
 
 .. _Paver: http://paver.github.io/paver/
 .. _Distribute: http://pythonhosted.org/distribute/
+.. _Setuptools: http://pythonhosted.org/setuptools/merge.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _flake8: https://pypi.python.org/pypi/flake8
 .. _pytest: http://pytest.org/latest/
