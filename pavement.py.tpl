@@ -142,9 +142,13 @@ def _lint():
     # Flake8 doesn't have an easy way to run checks using a Python function, so
     # just fork off another process to do it.
 
-    git_python_files = filter(
-        lambda filename: filename.endswith('.py'),
-        get_project_files())
+    # Python 3 compat:
+    # - filter returns a generator, but we actually want a list.
+    # - The result of subprocess call outputs are byte strings, meaning we need
+    #   to pass a byte string to endswith.
+    git_python_files = list(filter(
+        lambda filename: filename.endswith(b'.py'),
+        get_project_files()))
     retcode = subprocess.call(
         ['flake8', '--max-complexity=10'] + git_python_files)
     if retcode == 0:
