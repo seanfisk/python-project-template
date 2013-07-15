@@ -20,7 +20,7 @@ if 'check_output' not in dir(subprocess):
         return out
     subprocess.check_output = check_output
 
-from paver.easy import options, task, Bunch, needs
+from paver.easy import options, task, needs
 from paver.setuputils import install_distutils_tasks
 
 try:
