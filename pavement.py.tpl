@@ -122,13 +122,6 @@ options(
     # see here for more options:
     # <http://packages.python.org/distribute/setuptools.html>
     setup=setup_dict,
-    sphinx=Bunch(
-        builddir='build',
-        sourcedir='source',
-    ),
-    minilib=Bunch(
-        extra_files=['doctools'],
-    ),
 )
 
 install_distutils_tasks()
