@@ -21,7 +21,6 @@ if 'check_output' not in dir(subprocess):
 
 from paver.easy import options, task, Bunch, needs
 from paver.setuputils import install_distutils_tasks
-import paver.doctools
 
 try:
     import colorama
@@ -268,8 +267,7 @@ def doc_watch():
             #     # sphinx-build doesn't always pick up changes on code files,
             #     # even though they are used to generate the documentation. As
             #     # a workaround, just clean before building.
-            #     paver.doctools.doc_clean()
-            paver.doctools.html()
+            html()
             print_success_message('Docs have been rebuilt.')
 
     print_success_message(
@@ -287,7 +285,7 @@ def doc_watch():
 
 
 @task
-@needs(['html'])
+@needs('html')
 def doc_open():
     """Build the HTML docs and open them in a web browser."""
     doc_index = 'docs/build/html/index.html'
@@ -312,3 +310,17 @@ def get_tasks():
     from paver.tasks import environment
     for task in environment.get_tasks():
         print(task.shortname)
+
+
+@task
+def html():
+    if sys.platform == 'win32':
+        # Windows
+        make_cmd = ['make.bat', 'html']
+    else:
+        # Linux, Mac OS X, and others
+        make_cmd = ['make', 'html']
+
+    retcode = subprocess.call(make_cmd, cwd='docs')
+    if retcode:
+        raise SystemExit(retcode)
