@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 
+import os
 import sys
 import time
 
@@ -36,6 +37,7 @@ from setup import setup_dict
 
 ## Constants
 CODE_DIRECTORY = '$package'
+DOCS_DIRECTORY = 'docs'
 TESTS_DIRECTORY = 'tests'
 PYTEST_FLAGS = ['--doctest-modules']
 
@@ -129,6 +131,22 @@ install_distutils_tasks()
 ## Task-related functions
 
 
+def _doc_make(*make_args):
+    """Run make in sphinx' docs directory.
+
+    :return: exit code
+    """
+    if sys.platform == 'win32':
+        # Windows
+        make_cmd = ['make.bat']
+    else:
+        # Linux, Mac OS X, and others
+        make_cmd = ['make']
+    make_cmd.extend(make_args)
+
+    return subprocess.call(make_cmd, cwd=DOCS_DIRECTORY)
+
+
 def _lint():
     """Run lint and return an exit code."""
     # Flake8 doesn't have an easy way to run checks using a Python function, so
@@ -166,7 +184,7 @@ def _test_all():
 ## Tasks
 
 @task
-@needs('html', 'setuptools.command.sdist')
+@needs('doc_html', 'setuptools.command.sdist')
 def sdist():
     """Builds the documentation and the tarball."""
     pass
@@ -260,7 +278,7 @@ def doc_watch():
             #     # sphinx-build doesn't always pick up changes on code files,
             #     # even though they are used to generate the documentation. As
             #     # a workaround, just clean before building.
-            html()
+            doc_html()
             print_success_message('Docs have been rebuilt.')
 
     print_success_message(
@@ -278,10 +296,10 @@ def doc_watch():
 
 
 @task
-@needs('html')
+@needs('doc_html')
 def doc_open():
     """Build the HTML docs and open them in a web browser."""
-    doc_index = 'docs/build/html/index.html'
+    doc_index = os.path.join(DOCS_DIRECTORY, 'build', 'html', 'index.html')
     if sys.platform == 'darwin':
         # Mac OS X
         subprocess.check_call(['open', doc_index])
@@ -306,14 +324,16 @@ def get_tasks():
 
 
 @task
-def html():
-    if sys.platform == 'win32':
-        # Windows
-        make_cmd = ['make.bat', 'html']
-    else:
-        # Linux, Mac OS X, and others
-        make_cmd = ['make', 'html']
+def doc_html():
+    retcode = _doc_make('html')
 
-    retcode = subprocess.call(make_cmd, cwd='docs')
+    if retcode:
+        raise SystemExit(retcode)
+
+
+@task
+def doc_clean():
+    retcode = _doc_make('clean')
+
     if retcode:
         raise SystemExit(retcode)
