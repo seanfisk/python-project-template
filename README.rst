@@ -105,10 +105,10 @@ Supported Python Versions
 
 Python Project Template supports the following versions out of the box:
 
-* CPython 2.6, 2.7
+* CPython 2.6, 2.7, 3.3
 * PyPy 1.9
 
-There are also plans to support CPython 3.3 in the future.
+CPython 3.0-3.2 may also work but are not supported.
 
 License
 =======
