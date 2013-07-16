@@ -186,7 +186,7 @@ def _test_all():
 @task
 @needs('doc_html', 'setuptools.command.sdist')
 def sdist():
-    """Builds the documentation and the tarball."""
+    """Build the HTML docs and the tarball."""
     pass
 
 
@@ -244,8 +244,7 @@ def coverage():
 
 @task  # NOQA
 def doc_watch():
-    ('Watch for changes in the Sphinx documentation and rebuild when '
-     'changed.')
+    """Watch for changes in the docs and rebuild HTML docs when changed."""
     try:
         from watchdog.events import FileSystemEventHandler
         from watchdog.observers import Observer
@@ -325,6 +324,7 @@ def get_tasks():
 
 @task
 def doc_html():
+    """Build the HTML docs."""
     retcode = _doc_make('html')
 
     if retcode:
@@ -333,6 +333,7 @@ def doc_html():
 
 @task
 def doc_clean():
+    """Clean (delete) the built docs."""
     retcode = _doc_make('clean')
 
     if retcode:
