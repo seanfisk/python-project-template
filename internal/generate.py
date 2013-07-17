@@ -7,8 +7,15 @@ from __future__ import print_function
 
 import os
 import os.path
+import shutil
 from string import Template
 import sys
+
+# Make sure this script is being run from the project root directory.
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if os.getcwd() != project_root:
+    raise SystemExit(
+        'Please run this script from the project root directory.')
 
 sys.path.append('my_module')
 # Can't use `from my_module import metadata' since `__init__.py' is templated.
@@ -53,9 +60,6 @@ os.rename('my_module', metadata.package)
 print('Removing internal Travis-CI test file...')
 os.remove('.travis.yml')
 
-print('Removing template project license...')
-os.remove('LICENSE.this-template-project')
-
 print("Revising `LICENSE' file...")
 # Open file for reading and writing.
 with open('LICENSE', 'r+') as license_file:
@@ -64,8 +68,8 @@ with open('LICENSE', 'r+') as license_file:
     license_file.seek(0)
     print(new_contents, file=license_file)
 
-print('Generation script imploding...')
-os.remove(__file__)
+print('Removing internal directory...')
+shutil.rmtree('internal')
 
 print('''
 To finish project setup:

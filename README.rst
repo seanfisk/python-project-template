@@ -44,7 +44,7 @@ Instructions
 
 #. Generate files based upon the project metadata you just entered::
 
-        python GENERATE.py
+        python internal/generate.py
 
    The generation script will remove all the template files and generate real files, then self-destruct upon completion.
 
