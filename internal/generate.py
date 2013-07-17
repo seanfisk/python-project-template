@@ -11,67 +11,70 @@ import shutil
 from string import Template
 import sys
 
-# Make sure this script is being run from the project root directory.
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if os.getcwd() != project_root:
-    raise SystemExit(
-        'Please run this script from the project root directory.')
 
-sys.path.append('my_module')
-# Can't use `from my_module import metadata' since `__init__.py' is templated.
-import metadata
+def main():
+    # If not in the project root directory, go to it.
+    project_root = os.path.dirname(os.path.dirname(
+        os.path.realpath(__file__)))
+    os.chdir(project_root)
 
-# The title of the main documentation should match the project name in the
-# metadata. Under it should be a matching underline of equal signs. Produce it
-# for the template.
-project_underline = len(metadata.project) * '='
+    sys.path.insert(0, os.path.realpath('my_module'))
+    # Can't use `from my_module import metadata' since `__init__.py' is
+    # templated.
+    import metadata
 
-# Substitute values into template files and produce their real counterparts.
-for dirpath, dirnames, filenames in os.walk('.'):
-    # Don't recurse into git directory.
-    if '.git' in dirnames:
-        dirnames.remove('.git')
+    # The title of the main documentation should match the project name in the
+    # metadata. Under it should be a matching underline of equal signs. Produce
+    # it for the template.
+    project_underline = len(metadata.project) * '='
 
-    for filename in filenames:
-        # Ignore all non-template files.
-        # Using splitext cuts off the last extension.
-        root, extension = os.path.splitext(filename)
-        if extension != '.tpl':
-            continue
+    # Substitute values into template files and produce their real
+    # counterparts.
+    for dirpath, dirnames, filenames in os.walk('.'):
+        # Don't recurse into git directory.
+        if '.git' in dirnames:
+            dirnames.remove('.git')
 
-        # Substitute values and write the new file.
-        tpl_path = os.path.join(dirpath, filename)
-        real_path = os.path.join(dirpath, root)
+        for filename in filenames:
+            # Ignore all non-template files.
+            # Using splitext cuts off the last extension.
+            root, extension = os.path.splitext(filename)
+            if extension != '.tpl':
+                continue
 
-        with open(tpl_path) as tpl_file:
-            template = Template(tpl_file.read())
-        print('Substituting', tpl_path, '->', real_path)
-        with open(real_path, 'w') as real_file:
-            real_file.write(template.safe_substitute(
-                project_underline=project_underline,
-                **metadata.__dict__))
+            # Substitute values and write the new file.
+            tpl_path = os.path.join(dirpath, filename)
+            real_path = os.path.join(dirpath, root)
 
-        # Remove the template file.
-        os.remove(tpl_path)
+            with open(tpl_path) as tpl_file:
+                template = Template(tpl_file.read())
+            print('Substituting', tpl_path, '->', real_path)
+            with open(real_path, 'w') as real_file:
+                real_file.write(template.safe_substitute(
+                    project_underline=project_underline,
+                    **metadata.__dict__))
 
-print('Renaming the package: my_module ->', metadata.package)
-os.rename('my_module', metadata.package)
+            # Remove the template file.
+            os.remove(tpl_path)
 
-print('Removing internal Travis-CI test file...')
-os.remove('.travis.yml')
+    print('Renaming the package: my_module ->', metadata.package)
+    os.rename('my_module', metadata.package)
 
-print("Revising `LICENSE' file...")
-# Open file for reading and writing.
-with open('LICENSE', 'r+') as license_file:
-    # Strip off the first two lines.
-    new_contents = ''.join(license_file.readlines()[2:])
-    license_file.seek(0)
-    print(new_contents, file=license_file)
+    print('Removing internal Travis-CI test file...')
+    os.remove('.travis.yml')
 
-print('Removing internal directory...')
-shutil.rmtree('internal')
+    print("Revising `LICENSE' file...")
+    # Open file for reading and writing.
+    with open('LICENSE', 'r+') as license_file:
+        # Strip off the first two lines.
+        new_contents = ''.join(license_file.readlines()[2:])
+        license_file.seek(0)
+        print(new_contents, file=license_file)
 
-print('''
+    print('Removing internal directory...')
+    shutil.rmtree('internal')
+
+    print('''
 To finish project setup:
 
 1. Change the `classifiers' keyword in `setup.py' as necessary.
@@ -80,3 +83,7 @@ To finish project setup:
    change is necessary.
 3. Change `README.rst' to your own text.
 ''')
+
+
+if __name__ == '__main__':
+    main()
