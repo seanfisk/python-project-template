@@ -12,6 +12,8 @@ def read(filename):
         return f.read()
 
 
+# See here for more options:
+# <http://pythonhosted.org/setuptools/setuptools.html>
 setup_dict = dict(
     name=metadata.package,
     version=metadata.version,

@@ -7,10 +7,10 @@
 
 This project provides a best-practices template Python project which integrates several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
-As it is a personal template project, the tools use are rather opinionated. They include:
+As it is a personal template project, the tools used are rather opinionated. They include:
 
 * Paver_ for running miscellaneous tasks
-* Distribute_ for distribution (will soon be updated to Setuptools_)
+* Setuptools_ for distribution (Setuptools and Distribute_ have merged_)
 * Sphinx_ for documentation
 * flake8_ for source code checking
 * pytest_ for unit testing
@@ -18,8 +18,9 @@ As it is a personal template project, the tools use are rather opinionated. They
 * tox_ for installing and testing on multiple Python versions
 
 .. _Paver: http://paver.github.io/paver/
-.. _Distribute: http://pythonhosted.org/distribute/
 .. _Setuptools: http://pythonhosted.org/setuptools/merge.html
+.. _Distribute: http://pythonhosted.org/distribute/
+.. _merged: http://pythonhosted.org/setuptools/merge.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _flake8: https://pypi.python.org/pypi/flake8
 .. _pytest: http://pytest.org/latest/
@@ -44,7 +45,7 @@ Instructions
 
 #. Generate files based upon the project metadata you just entered::
 
-        python GENERATE.py
+        python internal/generate.py
 
    The generation script will remove all the template files and generate real files, then self-destruct upon completion.
 
@@ -95,6 +96,24 @@ Running it via ``tox`` from the project root directory calls ``paver test_all`` 
 and does an additional test run to ensure documentation generation works flawlessly.
 You can customize the list of supported and thus tested Python versions in the ``tox.ini`` file.
 
+Pip Requirements Files vs. Setuptools ``install_requires`` Keyword
+------------------------------------------------------------------
+
+The difference in use case between these two mechanisms can be very confusing. The `pip requirements files`_ is the conventionally-named ``requirements.txt`` that sits in the root directory of many repositories, including this one. The `Setuptools install_requires keyword`_ is the list of dependencies declared in ``setup.py`` that is automatically installed by ``pip`` or ``easy_install`` when a package is installed. They have similar but distinct purposes:
+
+``install_requires`` keyword
+    Install runtime dependencies for the package. This list is meant to *exclude* versions of dependent packages that do not work with this Python package. This is intended to be run automatically by ``pip`` or ``easy_install``.
+
+pip requirements file
+    Install runtime and/or development dependencies for the package. Replicate an environment by specifying exact versions of packages that are confirmed to work together. The goal is to `ensure repeatability`_ and provide developers with an identical development environment. This is intended to be run automatically by the developer.
+
+For more information, see the answer provided by Ian Bicking (author of pip) to `this StackOverflow question`_.
+
+.. _Pip requirements files: http://www.pip-installer.org/en/latest/requirements.html
+.. _Setuptools install_requires keyword: http://pythonhosted.org/setuptools/setuptools.html?highlight=install_requires#declaring-dependencies
+.. _ensure repeatability: http://www.pip-installer.org/en/latest/cookbook.html#ensuring-repeatability
+.. _this StackOverflow question: http://stackoverflow.com/questions/6947988/when-to-use-pip-requirements-file-versus-install-requires-in-setup-py
+
 Issues
 ======
 
@@ -138,6 +157,19 @@ The template also uses a number of other pieces of software, whose licenses are 
 +------------------------+----------------------------------+
 |tox                     |MIT/X11 License                   |
 +------------------------+----------------------------------+
+
+Development
+===========
+
+If you wish to contribute, first make your changes. Then run the following from the project root directory::
+
+    source internal/test.sh
+
+This will copy the template directory to a temporary directory, run the generation, then run tox. Any arguments passed will go directly to the tox command line, e.g.::
+
+    source internal/test.sh -e py27
+
+This command line would just test Python 2.7.
 
 Authors
 =======

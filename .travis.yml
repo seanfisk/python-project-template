@@ -9,6 +9,6 @@ env:
 install:
   - pip install tox
 before_script:
-  - python GENERATE.py
+  - python internal/generate.py
 script:
   - tox
