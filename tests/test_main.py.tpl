@@ -1,16 +1,16 @@
-import pytest
+from pytest import raises, fixture
 from mock import patch, call
 
 from $package import metadata
 from ${package}.main import _main
 
 
-@pytest.fixture(params=['-h', '--help'])
+@fixture(params=['-h', '--help'])
 def helparg(request):
     return request.param
 
 
-@pytest.fixture(params=['-v', '--version'])
+@fixture(params=['-v', '--version'])
 def versionarg(request):
     return request.param
 
@@ -20,7 +20,7 @@ class TestMain(object):
         with patch('sys.exit', autospec=True, spec_set=True) as mock_exit:
             mock_exit.side_effect = Exception(
                 'fake exception to stop execution')
-            with pytest.raises(Exception):
+            with raises(Exception):
                 _main(['progname', helparg])
         out, err = capsys.readouterr()
         # Should have printed some sort of usage message. We don't
@@ -36,7 +36,7 @@ class TestMain(object):
         with patch('sys.exit', autospec=True, spec_set=True) as mock_exit:
             mock_exit.side_effect = Exception(
                 'fake exception to stop execution')
-            with pytest.raises(Exception):
+            with raises(Exception):
                 _main(['progname', versionarg])
         out, err = capsys.readouterr()
         assert err == '{0} {1}\n'.format(metadata.project, metadata.version)
