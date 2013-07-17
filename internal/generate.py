@@ -8,6 +8,7 @@ from __future__ import print_function
 import os
 import os.path
 import shutil
+import stat
 from string import Template
 import sys
 
@@ -59,6 +60,11 @@ def main():
 
     print('Renaming the package: my_module ->', metadata.package)
     os.rename('my_module', metadata.package)
+
+    print('Making main script executable...')
+    main_py_path = os.path.join(metadata.package, 'main.py')
+    # This is a no-op on Windows.
+    os.chmod(main_py_path, os.stat(main_py_path).st_mode | stat.S_IXUSR)
 
     print('Removing internal Travis-CI test file...')
     os.remove('.travis.yml')
