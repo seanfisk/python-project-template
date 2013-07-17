@@ -7,7 +7,7 @@
 
 This project provides a best-practices template Python project which integrates several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
-As it is a personal template project, the tools use are rather opinionated. They include:
+As it is a personal template project, the tools used are rather opinionated. They include:
 
 * Paver_ for running miscellaneous tasks
 * Distribute_ for distribution (will soon be updated to Setuptools_)
