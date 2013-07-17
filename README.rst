@@ -10,7 +10,7 @@ This project provides a best-practices template Python project which integrates 
 As it is a personal template project, the tools used are rather opinionated. They include:
 
 * Paver_ for running miscellaneous tasks
-* Distribute_ for distribution (will soon be updated to Setuptools_)
+* Setuptools_ for distribution (Setuptools and Distribute_ have merged_)
 * Sphinx_ for documentation
 * flake8_ for source code checking
 * pytest_ for unit testing
@@ -18,8 +18,9 @@ As it is a personal template project, the tools used are rather opinionated. The
 * tox_ for installing and testing on multiple Python versions
 
 .. _Paver: http://paver.github.io/paver/
-.. _Distribute: http://pythonhosted.org/distribute/
 .. _Setuptools: http://pythonhosted.org/setuptools/merge.html
+.. _Distribute: http://pythonhosted.org/distribute/
+.. _merged: http://pythonhosted.org/setuptools/merge.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _flake8: https://pypi.python.org/pypi/flake8
 .. _pytest: http://pytest.org/latest/

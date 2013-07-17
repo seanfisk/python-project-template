@@ -120,11 +120,7 @@ def print_failure_message(message):
         print(message, file=sys.stderr)
 
 
-options(
-    # see here for more options:
-    # <http://packages.python.org/distribute/setuptools.html>
-    setup=setup_dict,
-)
+options(setup=setup_dict)
 
 install_distutils_tasks()
 
