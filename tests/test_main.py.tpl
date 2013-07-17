@@ -1,21 +1,18 @@
-from pytest import raises, fixture
+from pytest import raises
+# The parametrize function is generated, so this doesn't work:
+#
+#     from pytest.mark import parametrize
+#
+import pytest
+parametrize = pytest.mark.parametrize
 from mock import patch, call
 
 from $package import metadata
 from ${package}.main import _main
 
 
-@fixture(params=['-h', '--help'])
-def helparg(request):
-    return request.param
-
-
-@fixture(params=['-v', '--version'])
-def versionarg(request):
-    return request.param
-
-
 class TestMain(object):
+    @parametrize('helparg', ['-h', '--help'])
     def test_help(self, helparg, capsys):
         with patch('sys.exit', autospec=True, spec_set=True) as mock_exit:
             mock_exit.side_effect = Exception(
@@ -32,6 +29,7 @@ class TestMain(object):
         # Should exit with zero return code.
         assert mock_exit.mock_calls == [call(0)]
 
+    @parametrize('versionarg', ['-v', '--version'])
     def test_version(self, versionarg, capsys):
         with patch('sys.exit', autospec=True, spec_set=True) as mock_exit:
             mock_exit.side_effect = Exception(
