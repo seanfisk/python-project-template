@@ -139,6 +139,19 @@ The template also uses a number of other pieces of software, whose licenses are 
 |tox                     |MIT/X11 License                   |
 +------------------------+----------------------------------+
 
+Development
+===========
+
+If you wish to contribute, first make your changes. Then run the following from the project root directory::
+
+    source internal/test.sh
+
+This will copy the template directory to a temporary directory, run the generation, then run tox. Any arguments passed will go directly to the tox command line, e.g.:
+
+    source internal/test.sh -e py27
+
+This command line would just test Python 2.7.
+
 Authors
 =======
 
