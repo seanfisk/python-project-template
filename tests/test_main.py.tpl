@@ -1,27 +1,20 @@
+from pytest import raises
+# The parametrize function is generated, so this doesn't work:
+#
+#     from pytest.mark import parametrize
+#
 import pytest
-from mock import patch, call
+parametrize = pytest.mark.parametrize
 
 from $package import metadata
 from ${package}.main import _main
 
 
-@pytest.fixture(params=['-h', '--help'])
-def helparg(request):
-    return request.param
-
-
-@pytest.fixture(params=['-v', '--version'])
-def versionarg(request):
-    return request.param
-
-
 class TestMain(object):
+    @parametrize('helparg', ['-h', '--help'])
     def test_help(self, helparg, capsys):
-        with patch('sys.exit', autospec=True, spec_set=True) as mock_exit:
-            mock_exit.side_effect = Exception(
-                'fake exception to stop execution')
-            with pytest.raises(Exception):
-                _main(['progname', helparg])
+        with raises(SystemExit) as exc_info:
+            _main(['progname', helparg])
         out, err = capsys.readouterr()
         # Should have printed some sort of usage message. We don't
         # need to explicitly test the content of the message.
@@ -30,13 +23,14 @@ class TestMain(object):
         # vector.
         assert 'progname' in out
         # Should exit with zero return code.
-        assert mock_exit.mock_calls == [call(0)]
+        assert exc_info.value.code == 0
 
+    @parametrize('versionarg', ['-v', '--version'])
     def test_version(self, versionarg, capsys):
-        with patch('sys.exit', autospec=True, spec_set=True) as mock_exit:
-            mock_exit.side_effect = Exception(
-                'fake exception to stop execution')
-            with pytest.raises(Exception):
-                _main(['progname', versionarg])
+        with raises(SystemExit) as exc_info:
+            _main(['progname', versionarg])
         out, err = capsys.readouterr()
+        # Should print out version.
         assert err == '{0} {1}\n'.format(metadata.project, metadata.version)
+        # Should exit with zero return code.
+        assert exc_info.value.code == 0
