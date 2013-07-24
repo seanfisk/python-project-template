@@ -15,7 +15,7 @@ As it is an all-in-one solution, the tools used are rather opinionated. They inc
 * flake8_ for source code checking
 * pytest_ for unit testing
 * mock_ for mocking
-* tox_ for installing and testing on multiple Python versions
+* tox_ for testing on multiple Python versions
 
 .. _Paver: http://paver.github.io/paver/
 .. _Setuptools: http://pythonhosted.org/setuptools/merge.html
