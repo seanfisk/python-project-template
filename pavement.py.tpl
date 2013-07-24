@@ -149,12 +149,10 @@ def _lint():
     # just fork off another process to do it.
 
     # Python 3 compat:
-    # - filter returns a generator, but we actually want a list.
     # - The result of subprocess call outputs are byte strings, meaning we need
     #   to pass a byte string to endswith.
-    git_python_files = list(filter(
-        lambda filename: filename.endswith(b'.py'),
-        get_project_files()))
+    git_python_files = [filename for filename in get_project_files()
+                        if filename.endswith(b'.py')]
     retcode = subprocess.call(
         ['flake8', '--max-complexity=10'] + git_python_files)
     if retcode == 0:
