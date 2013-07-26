@@ -127,7 +127,12 @@ Python Project Template supports the following versions out of the box:
 * CPython 2.6, 2.7, 3.3
 * PyPy 1.9
 
-CPython 3.0-3.2 may also work but are not supported.
+CPython 3.0-3.2 may also work but are at this point unsupported. PyPy 2.0.2 is known to work but is not run on Travis-CI.
+
+Jython_ and IronPython_ may also work, but have not been tested. If there is interest in support for these alternative implementations, please open a feature request!
+
+.. _Jython: http://jython.org/
+.. _IronPython: http://ironpython.net/
 
 License
 =======
