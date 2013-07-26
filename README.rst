@@ -175,8 +175,8 @@ Jython_ and IronPython_ may also work, but have not been tested. If there is int
 .. _Jython: http://jython.org/
 .. _IronPython: http://ironpython.net/
 
-License
-=======
+Licenses
+========
 
 The code which makes up this Python project template is licensed under the MIT/X11 license. Feel free to use it in your free software/open-source or proprietary projects.
 
