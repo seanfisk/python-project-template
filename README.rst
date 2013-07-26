@@ -160,11 +160,6 @@ For more information, see the answer provided by Ian Bicking (author of pip) to 
 .. _ensure repeatability: http://www.pip-installer.org/en/latest/cookbook.html#ensuring-repeatability
 .. _this StackOverflow question: http://stackoverflow.com/questions/6947988/when-to-use-pip-requirements-file-versus-install-requires-in-setup-py
 
-Issues
-======
-
-Please report any bugs or requests that you have using the Github issue tracker!
-
 Supported Python Versions
 =========================
 
@@ -208,6 +203,11 @@ The template also uses a number of other pieces of software, whose licenses are 
 +------------------------+----------------------------------+
 |tox                     |MIT/X11 License                   |
 +------------------------+----------------------------------+
+
+Issues
+======
+
+Please report any bugs or requests that you have using the Github issue tracker!
 
 Development
 ===========
