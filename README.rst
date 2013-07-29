@@ -14,7 +14,7 @@ As it is an all-in-one solution, the tools used are rather opinionated. They inc
 * Sphinx_ for documentation
 * flake8_ for source code checking
 * pytest_ for unit testing
-* mock_ for mocking
+* mock_ for mocking (not required by the template, but included anyway)
 * tox_ for testing on multiple Python versions
 
 .. _Paver: http://paver.github.io/paver/
