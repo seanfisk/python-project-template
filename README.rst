@@ -17,6 +17,8 @@ As it is an all-in-one solution, the tools used are rather opinionated. They inc
 * mock_ for mocking (not required by the template, but included anyway)
 * tox_ for testing on multiple Python versions
 
+If you are new to Python or new to creating Python projects, see Kenneth Reitz's `Hitchhiker's Guide to Python`_ for an explanation of some of the tools used here.
+
 .. _Paver: http://paver.github.io/paver/
 .. _Setuptools: http://pythonhosted.org/setuptools/merge.html
 .. _Distribute: http://pythonhosted.org/distribute/
@@ -26,6 +28,7 @@ As it is an all-in-one solution, the tools used are rather opinionated. They inc
 .. _pytest: http://pytest.org/latest/
 .. _mock: http://www.voidspace.org.uk/python/mock/
 .. _tox: http://testrun.org/tox/latest/
+.. _Hitchhiker's Guide to Python: http://docs.python-guide.org/en/latest/
 
 Project Setup
 =============
@@ -35,11 +38,10 @@ This will be the README for your project. For now, follow these instructions to 
 Instructions
 ------------
 
-#. Clone the template project and remove the git history::
+#. Clone the template project, replacing ``my-project`` with the name of the project you are creating::
 
-        git clone https://github.com/seanfisk/python-project-template.git my-module
-        cd my-module
-        rm -rf .git
+        git clone https://github.com/seanfisk/python-project-template.git my-project
+        cd my-project
 
 #. Edit the metadata file ``my_module/metadata.py`` to correctly describe your project. Don't forget to correct the docstring.
 
@@ -49,11 +51,65 @@ Instructions
 
    The generation script will remove all the template files and generate real files, then self-destruct upon completion.
 
-#. Change the ``classifiers`` keyword in ``setup.py`` as necessary (this will require changing).
+#. Delete the git history::
+
+        rm -rf .git
 
 #. Change the license in ``setup.py`` and replace the generated ``LICENSE`` file with the one of your choice. If you would like to use the MIT license, no change is necessary.
 
+#. Change the ``classifiers`` keyword in ``setup.py``. This *will* require modification.
+
 #. Replace this README with your own text.
+
+#. *(Optional, but good practice)* Create a new virtual environment for your project:
+
+   With virtualenvwrapper_::
+
+       mkvirtualenv my-project
+
+   With plain virtualenv_::
+
+       virtualenv /path/to/my-project-venv
+       source /path/to/my-project-venv/bin/activate
+
+   If you are new to virtual environments, please see the `Virtual Environment section`_ of Kenneth Reitz's Python Guide.
+
+#. Install the project's development and runtime requirements::
+
+        pip install -r requirements-dev.txt
+
+#. Run the tests::
+
+        paver test_all
+
+   You should see output similar to this::
+
+       $ paver test_all
+       ---> pavement.test_all
+       No style errors
+       ========================================= test session starts =========================================
+       platform darwin -- Python 2.7.3 -- pytest-2.3.4
+       collected 5 items
+
+       tests/test_main.py .....
+
+       ====================================== 5 passed in 0.05 seconds =======================================
+         ___  _   ___ ___ ___ ___
+        | _ \/_\ / __/ __| __|   \
+        |  _/ _ \\__ \__ \ _|| |) |
+        |_|/_/ \_\___/___/___|___/
+
+#. If the tests passed, initialize the git repository and commit your changes (if they didn't, report an issue!)::
+
+        git init
+        git add .
+        git commit -m 'Initial commit.'
+
+Project setup is now complete!
+
+.. _virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
+.. _virtualenv: http://www.virtualenv.org/en/latest/
+.. _Virtual Environment section: http://docs.python-guide.org/en/latest/dev/virtualenvs.html
 
 Using Paver
 -----------
@@ -72,21 +128,11 @@ The ``pavement.py`` file comes with a number of tasks already set up for you. Yo
 
 For example, to run the both the unit tests and lint, run the following in the project root directory::
 
-    $ paver test_all
-    ---> pavement.test_all
-    No style errors
-    ========================================= test session starts =========================================
-    platform darwin -- Python 2.7.3 -- pytest-2.3.4
-    collected 5 items
+    paver test_all
 
-    tests/test_main.py .....
+To build the HTML documentation, then open it in a web browser::
 
-    ====================================== 5 passed in 0.05 seconds =======================================
-      ___  _   ___ ___ ___ ___
-     | _ \/_\ / __/ __| __|   \
-     |  _/ _ \\__ \__ \ _|| |) |
-     |_|/_/ \_\___/___/___|___/
-
+    paver doc_open
 
 Using Tox
 ---------
@@ -114,11 +160,6 @@ For more information, see the answer provided by Ian Bicking (author of pip) to 
 .. _ensure repeatability: http://www.pip-installer.org/en/latest/cookbook.html#ensuring-repeatability
 .. _this StackOverflow question: http://stackoverflow.com/questions/6947988/when-to-use-pip-requirements-file-versus-install-requires-in-setup-py
 
-Issues
-======
-
-Please report any bugs or requests that you have using the Github issue tracker!
-
 Supported Python Versions
 =========================
 
@@ -134,8 +175,8 @@ Jython_ and IronPython_ may also work, but have not been tested. If there is int
 .. _Jython: http://jython.org/
 .. _IronPython: http://ironpython.net/
 
-License
-=======
+Licenses
+========
 
 The code which makes up this Python project template is licensed under the MIT/X11 license. Feel free to use it in your free software/open-source or proprietary projects.
 
@@ -162,6 +203,11 @@ The template also uses a number of other pieces of software, whose licenses are 
 +------------------------+----------------------------------+
 |tox                     |MIT/X11 License                   |
 +------------------------+----------------------------------+
+
+Issues
+======
+
+Please report any bugs or requests that you have using the Github issue tracker!
 
 Development
 ===========
