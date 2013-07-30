@@ -10,7 +10,7 @@ import sys
 from $package import metadata
 
 
-def _main(argv):
+def main(argv):
     """Program entry point.
 
     :param argv: command-line arguments
@@ -48,10 +48,10 @@ URL: <{url}>
     return 0
 
 
-def main():
-    """Main for use with setuptools/distribute."""
-    raise SystemExit(_main(sys.argv))
+def entry_point():
+    """Zero-argument entry point for use with setuptools/distribute."""
+    raise SystemExit(main(sys.argv))
 
 
 if __name__ == '__main__':
-    main()
+    entry_point()
