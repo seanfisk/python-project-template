@@ -87,7 +87,8 @@ To finish project setup:
 2. Change the license in `setup.py' and replace the generated `LICENSE' file
    with the one of your choice. If you would like to use the MIT license, no
    change is necessary.
-3. Change `README.rst' to your own text.
+3. Install `argparse' package when developing on Python 2.6.
+4. Change `README.rst' to your own text.
 ''')
 
 
