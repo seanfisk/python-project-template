@@ -81,6 +81,10 @@ Instructions
 
         pip install -r requirements-dev.txt
 
+#. Install ``argparse`` package when developing on Python 2.6::
+
+        pip install argparse
+
 #. Run the tests::
 
         paver test_all

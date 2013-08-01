@@ -12,6 +12,15 @@ def read(filename):
         return f.read()
 
 
+# define install_requires for specific Python versions
+python_version_specific_requires = []
+
+# as of Python >= 2.7 and >= 3.2, the argparse module is maintained within
+# the Python standard library, otherwise we install it as a separate package
+if sys.version_info < (2, 7) or (3, 0) <= sys.version_info < (3, 3):
+    python_version_specific_requires.append('argparse')
+
+
 # See here for more options:
 # <http://pythonhosted.org/setuptools/setuptools.html>
 setup_dict = dict(
@@ -45,9 +54,8 @@ setup_dict = dict(
     ],
     packages=find_packages(),
     install_requires=[
-        'argparse',  # argparse is in the Python >= 2.7 standard library
-                     # this is for Python 2.6 compatibility
-    ],
+        # your module dependencies
+    ] + python_version_specific_requires,
     zip_safe=False,  # don't use eggs
     entry_points={
         'console_scripts': [
