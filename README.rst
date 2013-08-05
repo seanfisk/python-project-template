@@ -106,7 +106,9 @@ Instructions
         |  _/ _ \\__ \__ \ _|| |) |
         |_|/_/ \_\___/___/___|___/
 
-#. If the tests passed, stage and commit your changes to git (if they didn't, report an issue!)::
+    The substitution performed is rather naive, so some style errors may be reported if the description or name cause lines to be too long. Correct these manually before moving to the next step. If any unit tests fail to pass, please report an issue.
+
+#. If the tests are passing, stage and commit your changes to git::
 
         git add .
         git commit -m 'Initial commit.'
