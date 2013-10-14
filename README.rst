@@ -51,12 +51,10 @@ Instructions
 
    The generation script will remove all the template files and generate real files, then self-destruct upon completion.
 
-#. Delete the old git history and re-initialize the repository::
+#. Delete the old git history and optionally re-initialize the repository::
 
         rm -rf .git
         git init
-
-   It's important to re-initialize here as the testing script relies on a git repository being present.
 
 #. Change the license in ``setup.py`` and replace the generated ``LICENSE`` file with the one of your choice. If you would like to use the MIT license, no change is necessary.
 
@@ -107,11 +105,6 @@ Instructions
         |_|/_/ \_\___/___/___|___/
 
    The substitution performed is rather naive, so some style errors may be reported if the description or name cause lines to be too long. Correct these manually before moving to the next step. If any unit tests fail to pass, please report an issue.
-
-#. If the tests are passing, stage and commit your changes to git::
-
-        git add .
-        git commit -m 'Initial commit.'
 
 Project setup is now complete!
 

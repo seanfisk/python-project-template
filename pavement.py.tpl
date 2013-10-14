@@ -45,10 +45,37 @@ PYTEST_FLAGS = ['--doctest-modules']
 
 
 def get_project_files():
+    """Retrieve a list of project files, ignoring hidden files.
+
+    :return: sorted list of project files
+    :rtype: :class:`list`
+    """
+    if is_git_project():
+        return get_git_project_files()
+
+    project_files = []
+    for top, subdirs, files in os.walk('.'):
+        for subdir in subdirs:
+            if subdir.startswith('.'):
+                subdirs.remove(subdir)
+
+        for f in files:
+            if f.startswith('.'):
+                continue
+            project_files.append(os.path.join(top, f))
+
+    return project_files
+
+
+def is_git_project():
+    return os.path.isdir('.git')
+
+
+def get_git_project_files():
     """Retrieve a list of all non-ignored files, including untracked files,
     excluding deleted files.
 
-    :return: sorted list of project files
+    :return: sorted list of git project files
     :rtype: :class:`list`
     """
     cached_and_untracked_files = git_ls_files(
@@ -151,10 +178,10 @@ def _lint():
     # Python 3 compat:
     # - The result of subprocess call outputs are byte strings, meaning we need
     #   to pass a byte string to endswith.
-    git_python_files = [filename for filename in get_project_files()
-                        if filename.endswith(b'.py')]
+    project_python_files = [filename for filename in get_project_files()
+                            if filename.endswith(b'.py')]
     retcode = subprocess.call(
-        ['flake8', '--max-complexity=10'] + git_python_files)
+        ['flake8', '--max-complexity=10'] + project_python_files)
     if retcode == 0:
         print_success_message('No style errors')
     return retcode
