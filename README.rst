@@ -64,6 +64,11 @@ Instructions
 
 #. *(Optional, but good practice)* Create a new virtual environment for your project:
 
+   With pyenv_ and pyenv-virtualenv_::
+
+       pyenv virtualenv my-project
+       pyenv local my-project
+
    With virtualenvwrapper_::
 
        mkvirtualenv my-project
@@ -108,6 +113,8 @@ Instructions
 
 Project setup is now complete!
 
+.. _pyenv: https://github.com/yyuu/pyenv
+.. _pyenv-virtualenv: https://github.com/yyuu/pyenv-virtualenv
 .. _virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
 .. _virtualenv: http://www.virtualenv.org/en/latest/
 .. _Virtual Environment section: http://docs.python-guide.org/en/latest/dev/virtualenvs.html
