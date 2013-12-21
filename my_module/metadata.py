@@ -1,4 +1,4 @@
-""":mod:`my_module.metadata` --- Project metadata
+"""Project metadata
 
 Information describing the project.
 """

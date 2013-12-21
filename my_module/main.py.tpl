@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-""":mod:`${package}.main` -- Program entry point
-"""
+"""Program entry point"""
 
 from __future__ import print_function
 

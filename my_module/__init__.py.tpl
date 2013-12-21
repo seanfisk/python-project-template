@@ -1,5 +1,4 @@
-""":mod:`$package` -- $description
-"""
+"""$description"""
 
 from $package import metadata
 
