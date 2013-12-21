@@ -36,7 +36,7 @@ URL: <{url}>
         description=metadata.description,
         epilog=epilog)
     arg_parser.add_argument(
-        '-v', '--version',
+        '-V', '--version',
         action='version',
         version='{0} {1}'.format(metadata.project, metadata.version))
 

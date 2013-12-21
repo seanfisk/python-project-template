@@ -25,7 +25,7 @@ class TestMain(object):
         # Should exit with zero return code.
         assert exc_info.value.code == 0
 
-    @parametrize('versionarg', ['-v', '--version'])
+    @parametrize('versionarg', ['-V', '--version'])
     def test_version(self, versionarg, capsys):
         with raises(SystemExit) as exc_info:
             main(['progname', versionarg])
