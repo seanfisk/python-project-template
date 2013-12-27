@@ -11,6 +11,20 @@ import shutil
 import stat
 from string import Template
 import sys
+import subprocess
+
+
+## Python 2.6 subprocess.check_output compatibility. Thanks Greg Hewgill!
+if 'check_output' not in dir(subprocess):
+    def check_output(cmd_args, *args, **kwargs):
+        proc = subprocess.Popen(
+            cmd_args, *args,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, **kwargs)
+        out, err = proc.communicate()
+        if proc.returncode != 0:
+            raise subprocess.CalledProcessError(args)
+        return out
+    subprocess.check_output = check_output
 
 
 def main():
@@ -79,6 +93,13 @@ def main():
 
     print('Removing internal directory...')
     shutil.rmtree('internal')
+
+    git_revision = subprocess.check_output(
+        ['git', 'rev-parse', 'HEAD']).rstrip()
+    print('Dropping PPT version cookie (revision {0})...'.format(git_revision))
+    # Append the commit hash of the current revision to the file.
+    with open('.ppt-version', 'a') as ppt_version_cookie_file:
+        print(git_revision, file=ppt_version_cookie_file)
 
     print('''
 To finish project setup:
