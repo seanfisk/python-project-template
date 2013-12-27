@@ -4,6 +4,7 @@ from __future__ import print_function
 import os
 import sys
 import imp
+import shutil
 import argparse
 import subprocess
 # Too bad we don't have TemporaryDirectory from Python 3.2. Guess we'll settle
@@ -130,6 +131,10 @@ def main(argv):
                 paths[0]))
         with open(paths[0], 'w') as current_file:
             current_file.write(diff3_out)
+
+    print('Removing temporary directories...')
+    for dir_ in [old_ppt_directory, new_ppt_directory]:
+        shutil.rmtree(dir_)
 
 
 if __name__ == '__main__':
