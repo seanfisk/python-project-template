@@ -42,6 +42,26 @@ def print_failed():
 ''')
 
 
+class cwd(object):
+    """Class used for temporarily changing directories. Can be though of
+    as a `pushd /my/dir' then a `popd' at the end.
+    """
+    def __init__(self, newcwd):
+        """:param newcwd: directory to make the cwd
+        :type newcwd: :class:`str`
+        """
+        self.newcwd = newcwd
+
+    def __enter__(self):
+        self.oldcwd = os.getcwd()
+        os.chdir(self.newcwd)
+        return os.getcwd()
+
+    def __exit__(self, type_, value, traceback):
+        # This acts like a `finally' clause: it will always be executed.
+        os.chdir(self.oldcwd)
+
+
 ## Task-related functions
 
 def _doc_make(*make_args):
@@ -57,7 +77,11 @@ def _doc_make(*make_args):
         make_cmd = ['make']
     make_cmd.extend(make_args)
 
-    return subprocess.call(make_cmd, cwd=DOCS_DIRECTORY)
+    # Account for a stupid Python "bug" on Windows:
+    # <http://bugs.python.org/issue15533>
+    with cwd(DOCS_DIRECTORY):
+        retcode = subprocess.call(make_cmd)
+    return retcode
 
 
 ## Tasks
