@@ -5,27 +5,63 @@
 
 from __future__ import print_function
 import os
-import shutil
 import sys
+import shutil
+import argparse
+import subprocess
+from distutils.dir_util import copy_tree
 
 
 def main(argv):
-    if len(argv) != 2:
-        raise SystemExit('Usage: {0} GEN_PATH'.format(argv[0]))
+    arg_parser = argparse.ArgumentParser(
+        description='Update the Python Project Template using diff3.')
+    arg_parser.add_argument(
+        'generation_path',
+        help='Directory in which to copy the template and run generation')
+    arg_parser.add_argument(
+        '--metadata-path',
+        help='Metadata file to use in project generation')
+    arg_parser.add_argument(
+        '--revision',
+        help='Revision of PPT to checkout')
+    args = arg_parser.parse_args(args=argv[1:])
 
     # Get the project root directory.
     project_root = os.path.dirname(os.path.dirname(
         os.path.realpath(__file__)))
 
-    temp_dir = argv[1]
-    print('Copying files to ', temp_dir)
-    shutil.copytree(project_root, temp_dir)
+    # Copy files to the generation directory.
+    temp_dir = args.generation_path
+    print('Copying files to', temp_dir)
+    # shutil.copytree requires that the destination directory not exist. Since
+    # we are dealing with mostly temporary directories, this creates race
+    # conditions _and_ is simply annoying. distutils.dir_util.copy_tree works
+    # nicely for this.
+    copy_tree(project_root, temp_dir)
+
+    # Get the metadata source file abspath if that was requested.
+    if args.metadata_path:
+        source_metadata_path = os.path.abspath(args.metadata_path)
+
+    # Switch to the newly-created generation directory.
+    old_cwd = os.getcwd()
+    print('Switching to', temp_dir)
     os.chdir(temp_dir)
 
-    # Run generation.
-    sys.path.insert(0, os.path.realpath('internal'))
-    import generate
-    generate.main()
+    # Checkout the old revision if that was requested.
+    if args.revision:
+        print('Checking out revision', args.revision)
+        subprocess.check_call(['git', 'checkout', args.revision])
+
+    # Copy the metadata file if that was requested. Must happen after the git
+    # checkout.
+    if args.metadata_path:
+        dest_metadata_path = os.path.join('my_module', 'metadata.py')
+        shutil.copyfile(source_metadata_path, dest_metadata_path)
+
+    # Run generation. Instead of importing we run directly with python. Too
+    # many things could go wrong with importing.
+    subprocess.check_call(['python', os.path.join('internal', 'generate.py')])
 
     # Don't run tox for now, because there are reasons to generate the project
     # and not run tox immediately, such as testing sdist, testing Paver tasks,
@@ -42,6 +78,8 @@ def main(argv):
 
     # Print out the directory name for the shell script.
     print(temp_dir)
+
+    os.chdir(old_cwd)
 
 
 if __name__ == '__main__':

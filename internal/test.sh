@@ -8,11 +8,7 @@
 #
 # Which would test just Python 2.7.
 
-# We just want the name of the directory to pass to the Python
-# script. So rmdir it, then let the Python script re-create. Not the
-# prettiest or safest operation, but it should be fine.
 PPT_TEMP_DIR=$(mktemp -d /tmp/python-project-template-XXXXXXXXXX)
-rmdir "$PPT_TEMP_DIR"
 
 python internal/test.py "$PPT_TEMP_DIR" "$@"
 pushd "$PPT_TEMP_DIR"
