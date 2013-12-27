@@ -132,6 +132,20 @@ def main(argv):
         with open(paths[0], 'w') as current_file:
             current_file.write(diff3_out)
 
+    new_revision = subprocess.check_output(
+        ['git', 'rev-parse', 'HEAD']).rstrip()
+    print('Updating PPT version cookie (revision {0})...'.format(new_revision))
+    # Open file for reading and writing.
+    with open(ppt_version_path, 'r+') as ppt_version_file:
+        # Strip off the last line.
+        new_contents_lines = ppt_version_file.readlines()[:-1]
+        # Append the new revision.
+        new_contents_lines.append(new_revision + '\n')
+        # Write new contents to file.
+        new_contents = ''.join(new_contents_lines)
+        ppt_version_file.seek(0)
+        print(new_contents, file=ppt_version_file)
+
     print('Removing temporary directories...')
     for dir_ in [old_ppt_directory, new_ppt_directory]:
         shutil.rmtree(dir_)
