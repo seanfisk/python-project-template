@@ -12,10 +12,6 @@ mccabe==0.2.1
 pep8==1.4.6
 pyflakes==0.7.3
 
-# Test running
-tox==1.6.1
-virtualenv==1.10.1
-
 # Documentation
 Sphinx==1.2
 docutils==0.11
