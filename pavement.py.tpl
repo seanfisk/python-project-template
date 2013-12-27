@@ -5,101 +5,23 @@ from __future__ import print_function
 import os
 import sys
 import time
-
 import subprocess
 
-## Python 2.6 subprocess.check_output compatibility. Thanks Greg Hewgill!
-if 'check_output' not in dir(subprocess):
-    def check_output(cmd_args, *args, **kwargs):
-        proc = subprocess.Popen(
-            cmd_args, *args,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, **kwargs)
-        out, err = proc.communicate()
-        if proc.returncode != 0:
-            raise subprocess.CalledProcessError(args)
-        return out
-    subprocess.check_output = check_output
+# Import parameters from the setup file.
+sys.path.append('.')
+from setup import (
+    setup_dict, get_project_files, print_success_message,
+    print_failure_message, _lint, _test, _test_all,
+    CODE_DIRECTORY, DOCS_DIRECTORY, TESTS_DIRECTORY, PYTEST_FLAGS)
 
 from paver.easy import options, task, needs, consume_args
 from paver.setuputils import install_distutils_tasks
 
-try:
-    import colorama
-    colorama.init()  # Initialize colorama on Windows
-except ImportError:
-    # Don't require colorama just for running paver tasks. This allows us to
-    # run `paver install' without requiring the user to first have colorama
-    # installed.
-    pass
+options(setup=setup_dict)
 
-sys.path.append('.')
-from setup import setup_dict
-
-## Constants
-CODE_DIRECTORY = '$package'
-DOCS_DIRECTORY = 'docs'
-TESTS_DIRECTORY = 'tests'
-PYTEST_FLAGS = ['--doctest-modules']
+install_distutils_tasks()
 
 ## Miscellaneous helper functions
-
-
-def get_project_files():
-    """Retrieve a list of project files, ignoring hidden files.
-
-    :return: sorted list of project files
-    :rtype: :class:`list`
-    """
-    if is_git_project():
-        return get_git_project_files()
-
-    project_files = []
-    for top, subdirs, files in os.walk('.'):
-        for subdir in subdirs:
-            if subdir.startswith('.'):
-                subdirs.remove(subdir)
-
-        for f in files:
-            if f.startswith('.'):
-                continue
-            project_files.append(os.path.join(top, f))
-
-    return project_files
-
-
-def is_git_project():
-    return os.path.isdir('.git')
-
-
-def get_git_project_files():
-    """Retrieve a list of all non-ignored files, including untracked files,
-    excluding deleted files.
-
-    :return: sorted list of git project files
-    :rtype: :class:`list`
-    """
-    cached_and_untracked_files = git_ls_files(
-        '--cached',  # All files cached in the index
-        '--others',  # Untracked files
-        # Exclude untracked files that would be excluded by .gitignore, etc.
-        '--exclude-standard')
-    uncommitted_deleted_files = git_ls_files('--deleted')
-
-    # Since sorting of files in a set is arbitrary, return a sorted list to
-    # provide a well-defined order to tools like flake8, etc.
-    return sorted(cached_and_untracked_files - uncommitted_deleted_files)
-
-
-def git_ls_files(*cmd_args):
-    """Run ``git ls-files`` in the top-level project directory. Arguments go
-    directly to execution call.
-
-    :return: set of file names
-    :rtype: :class:`set`
-    """
-    cmd = ['git', 'ls-files']
-    cmd.extend(cmd_args)
-    return set(subprocess.check_output(cmd).splitlines())
 
 
 def print_passed():
@@ -120,39 +42,7 @@ def print_failed():
 ''')
 
 
-def print_success_message(message):
-    """Print a message indicating success in green color to STDOUT.
-
-    :param message: the message to print
-    :type message: :class:`str`
-    """
-    try:
-        import colorama
-        print(colorama.Fore.GREEN + message + colorama.Fore.RESET)
-    except ImportError:
-        print(message)
-
-
-def print_failure_message(message):
-    """Print a message indicating failure in red color to STDERR.
-
-    :param message: the message to print
-    :type message: :class:`str`
-    """
-    try:
-        import colorama
-        print(colorama.Fore.RED + message + colorama.Fore.RESET,
-              file=sys.stderr)
-    except ImportError:
-        print(message, file=sys.stderr)
-
-
-options(setup=setup_dict)
-
-install_distutils_tasks()
-
 ## Task-related functions
-
 
 def _doc_make(*make_args):
     """Run make in sphinx' docs directory.
@@ -168,42 +58,6 @@ def _doc_make(*make_args):
     make_cmd.extend(make_args)
 
     return subprocess.call(make_cmd, cwd=DOCS_DIRECTORY)
-
-
-def _lint():
-    """Run lint and return an exit code."""
-    # Flake8 doesn't have an easy way to run checks using a Python function, so
-    # just fork off another process to do it.
-
-    # Python 3 compat:
-    # - The result of subprocess call outputs are byte strings, meaning we need
-    #   to pass a byte string to endswith.
-    project_python_files = [filename for filename in get_project_files()
-                            if filename.endswith(b'.py')]
-    retcode = subprocess.call(
-        ['flake8', '--max-complexity=10'] + project_python_files)
-    if retcode == 0:
-        print_success_message('No style errors')
-    return retcode
-
-
-def _test():
-    """Run the unit tests.
-
-    :return: exit code
-    """
-    import pytest
-    # This runs the unit tests.
-    # It also runs doctest, but only on the modules in TESTS_DIRECTORY.
-    return pytest.main(PYTEST_FLAGS + [TESTS_DIRECTORY])
-
-
-def _test_all():
-    """Run lint and tests.
-
-    :return: exit code
-    """
-    return _lint() + _test()
 
 
 ## Tasks
