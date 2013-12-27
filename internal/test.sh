@@ -23,4 +23,5 @@ ppt_finished() {
 }
 
 echo
+echo "Run \`tox' or \`detox' to test the project."
 echo "Run \`ppt_finished' when done to return to the template project and delete this directory."

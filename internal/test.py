@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-# This script allows easy testing of the template project. The first argument
-# is the directory to which to copy and generate the template project. All
-# other arguments go directly to tox.
+# This script allows easy testing of the template project. The only argument
+# is the directory to which to copy and generate the template project.
 
 from __future__ import print_function
 import os
@@ -11,8 +10,8 @@ import sys
 
 
 def main(argv):
-    if len(argv) == 1:
-        print('Usage: {0} GEN_PATH [TOX_ARGS...]', file=sys.stderr)
+    if len(argv) != 2:
+        raise SystemExit('Usage: {0} GEN_PATH'.format(argv[0]))
 
     # Get the project root directory.
     project_root = os.path.dirname(os.path.dirname(
@@ -28,13 +27,18 @@ def main(argv):
     import generate
     generate.main()
 
+    # Don't run tox for now, because there are reasons to generate the project
+    # and not run tox immediately, such as testing sdist, testing Paver tasks,
+    # etc. Just suggest running `tox' or `detox' manually afterward in the
+    # shell script.
+
     # Run tox.
-    import tox
+    # import tox
     # tox will raise SystemExit() and try to exit. We don't want that.
-    try:
-        tox.cmdline(argv[2:])
-    except SystemExit:
-        pass
+    # try:
+    #     tox.cmdline(argv[2:])
+    # except SystemExit:
+    #     pass
 
     # Print out the directory name for the shell script.
     print(temp_dir)
