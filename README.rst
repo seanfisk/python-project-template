@@ -43,7 +43,7 @@ Instructions
         git clone https://github.com/seanfisk/python-project-template.git my-project
         cd my-project
 
-#. Edit the metadata file ``my_module/metadata.py`` to correctly describe your project. Don't forget to correct the docstring.
+#. Edit the metadata file ``my_module/metadata.py`` to correctly describe your project.
 
 #. Generate files based upon the project metadata you just entered::
 
