@@ -140,7 +140,7 @@ def main(argv):
         # Strip off the last line.
         new_contents_lines = ppt_version_file.readlines()[:-1]
         # Append the new revision.
-        new_contents_lines.append(new_revision + '\n')
+        new_contents_lines.append(new_revision)
         # Write new contents to file.
         new_contents = ''.join(new_contents_lines)
         ppt_version_file.seek(0)
