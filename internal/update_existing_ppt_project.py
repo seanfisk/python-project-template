@@ -114,6 +114,9 @@ def main(argv):
         git_ls_files = subprocess.check_output(
             ['git', 'ls-files']).splitlines()
 
+    # Don't diff3 the version cookie.
+    git_ls_files.remove('.ppt-version')
+
     print('Running diff3...')
     for git_path in git_ls_files:
         paths = []
