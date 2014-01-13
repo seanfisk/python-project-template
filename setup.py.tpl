@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os
 import sys
+import imp
 import subprocess
 
 ## Python 2.6 subprocess.check_output compatibility. Thanks Greg Hewgill!
@@ -28,14 +29,28 @@ except ImportError:
     # installed.
     pass
 
+# Add the current directory to the module search path.
 sys.path.append('.')
-from $package import metadata
 
 ## Constants
 CODE_DIRECTORY = '$package'
 DOCS_DIRECTORY = 'docs'
 TESTS_DIRECTORY = 'tests'
 PYTEST_FLAGS = ['--doctest-modules']
+
+# Import metadata. Normally this would just be:
+#
+#     from $package import metadata
+#
+# However, when we do this, we also import `$package/__init__.py'. If this
+# imports names from some other modules and these modules have third-party
+# dependencies that need installing (which happens after this file is run), the
+# script will crash. What we do instead is to load the metadata module by path
+# instead, effectively side-stepping the dependency problem. Please make sure
+# metadata has no dependencies, otherwise they will need to be added to
+# the setup_requires keyword.
+metadata = imp.load_source(
+    'metadata', os.path.join(CODE_DIRECTORY, 'metadata.py'))
 
 
 ## Miscellaneous helper functions
