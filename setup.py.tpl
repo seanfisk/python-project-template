@@ -232,7 +232,7 @@ setup_dict = dict(
         'Topic :: System :: Installation/Setup',
         'Topic :: System :: Software Distribution',
     ],
-    packages=find_packages(),
+    packages=find_packages('$package'),
     install_requires=[
         # your module dependencies
     ] + python_version_specific_requires,
