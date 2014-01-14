@@ -117,7 +117,7 @@ Project setup is now complete!
 .. _pyenv-virtualenv: https://github.com/yyuu/pyenv-virtualenv
 .. _virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
 .. _virtualenv: http://www.virtualenv.org/en/latest/
-.. _Virtual Environment section: http://docs.python-guide.org/en/latest/dev/virtualenvs.html
+.. _Virtual Environment section: http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
 Using Paver
 -----------
