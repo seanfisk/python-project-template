@@ -53,7 +53,7 @@ Instructions
 
 #. Delete the old git history and optionally re-initialize the repository::
 
-        rm -rf .git
+        rm -rf .git # or `ri -recurse -force .git' for PowerShell
         git init
 
 #. Change the license in ``setup.py`` and replace the generated ``LICENSE`` file with the one of your choice. If you would like to use the MIT license, no change is necessary.
