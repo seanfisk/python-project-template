@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """$description"""
 
 from $package import metadata
