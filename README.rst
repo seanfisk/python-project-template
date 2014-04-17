@@ -33,7 +33,7 @@ If you are new to Python or new to creating Python projects, see Kenneth Reitz's
 Project Setup
 =============
 
-This will be the README for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this README with contents specific to your project.
+This will be the ``README`` for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this ``README`` with contents specific to your project.
 
 Instructions
 ------------
@@ -60,7 +60,7 @@ Instructions
 
 #. Change the ``classifiers`` keyword in ``setup.py``. This *will* require modification.
 
-#. Replace this README with your own text.
+#. Replace this ``README`` with your own text.
 
 #. *(Optional, but good practice)* Create a new virtual environment for your project:
 
@@ -84,7 +84,7 @@ Instructions
 
         pip install -r requirements-dev.txt
 
-#. Install ``argparse`` package when developing on Python 2.6::
+#. Install ``argparse`` package when developing for Python 2.6::
 
         pip install argparse
 
@@ -111,7 +111,7 @@ Instructions
 
    The substitution performed is rather naive, so some style errors may be reported if the description or name cause lines to be too long. Correct these manually before moving to the next step. If any unit tests fail to pass, please report an issue.
 
-Project setup is now complete!
+**Project setup is now complete!**
 
 .. _pyenv: https://github.com/yyuu/pyenv
 .. _pyenv-virtualenv: https://github.com/yyuu/pyenv-virtualenv
@@ -150,7 +150,7 @@ Running it via ``tox`` from the project root directory calls ``paver test_all`` 
 and does an additional test run to ensure documentation generation works flawlessly.
 You can customize the list of supported and thus tested Python versions in the ``tox.ini`` file.
 
-Pip Requirements Files vs. Setuptools ``install_requires`` Keyword
+Pip ``requirements[-dev].txt`` files vs. Setuptools ``install_requires`` Keyword
 ------------------------------------------------------------------
 
 The difference in use case between these two mechanisms can be very confusing. The `pip requirements files`_ is the conventionally-named ``requirements.txt`` that sits in the root directory of many repositories, including this one. The `Setuptools install_requires keyword`_ is the list of dependencies declared in ``setup.py`` that is automatically installed by ``pip`` or ``easy_install`` when a package is installed. They have similar but distinct purposes:
@@ -215,7 +215,7 @@ The template also uses a number of other pieces of software, whose licenses are 
 Issues
 ======
 
-Please report any bugs or requests that you have using the Github issue tracker!
+Please report any bugs or requests that you have using the GitHub issue tracker!
 
 Development
 ===========
