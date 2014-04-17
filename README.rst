@@ -215,7 +215,7 @@ The template also uses a number of other pieces of software, whose licenses are 
 Issues
 ======
 
-Please report any bugs or requests that you have using the Github issue tracker!
+Please report any bugs or requests that you have using the GitHub issue tracker!
 
 Development
 ===========
