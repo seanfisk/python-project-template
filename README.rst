@@ -33,7 +33,7 @@ If you are new to Python or new to creating Python projects, see Kenneth Reitz's
 Project Setup
 =============
 
-This will be the README for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this README with contents specific to your project.
+This will be the ``README`` for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this ``README`` with contents specific to your project.
 
 Instructions
 ------------
@@ -60,7 +60,7 @@ Instructions
 
 #. Change the ``classifiers`` keyword in ``setup.py``. This *will* require modification.
 
-#. Replace this README with your own text.
+#. Replace this ``README`` with your own text.
 
 #. *(Optional, but good practice)* Create a new virtual environment for your project:
 
@@ -111,7 +111,7 @@ Instructions
 
    The substitution performed is rather naive, so some style errors may be reported if the description or name cause lines to be too long. Correct these manually before moving to the next step. If any unit tests fail to pass, please report an issue.
 
-Project setup is now complete!
+**Project setup is now complete!**
 
 .. _pyenv: https://github.com/yyuu/pyenv
 .. _pyenv-virtualenv: https://github.com/yyuu/pyenv-virtualenv
