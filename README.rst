@@ -84,7 +84,7 @@ Instructions
 
         pip install -r requirements-dev.txt
 
-#. Install ``argparse`` package when developing on Python 2.6::
+#. Install ``argparse`` package when developing for Python 2.6::
 
         pip install argparse
 
@@ -150,7 +150,7 @@ Running it via ``tox`` from the project root directory calls ``paver test_all`` 
 and does an additional test run to ensure documentation generation works flawlessly.
 You can customize the list of supported and thus tested Python versions in the ``tox.ini`` file.
 
-Pip Requirements Files vs. Setuptools ``install_requires`` Keyword
+Pip ``requirements[-dev].txt`` files vs. Setuptools ``install_requires`` Keyword
 ------------------------------------------------------------------
 
 The difference in use case between these two mechanisms can be very confusing. The `pip requirements files`_ is the conventionally-named ``requirements.txt`` that sits in the root directory of many repositories, including this one. The `Setuptools install_requires keyword`_ is the list of dependencies declared in ``setup.py`` that is automatically installed by ``pip`` or ``easy_install`` when a package is installed. They have similar but distinct purposes:
