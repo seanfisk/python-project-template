@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # This script replaces all template files with a real file with contents
 # properly substituted.

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # This script allows easy testing of the template project. The only argument
 # is the directory to which to copy and generate the template project.
