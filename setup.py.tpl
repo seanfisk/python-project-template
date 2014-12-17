@@ -20,6 +20,7 @@ if 'check_output' not in dir(subprocess):
 
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
+from distutils import spawn
 
 try:
     import colorama
@@ -62,7 +63,7 @@ def get_project_files():
     :return: sorted list of project files
     :rtype: :class:`list`
     """
-    if is_git_project():
+    if is_git_project() and has_git():
         return get_git_project_files()
 
     project_files = []
@@ -81,6 +82,10 @@ def get_project_files():
 
 def is_git_project():
     return os.path.isdir('.git')
+
+
+def has_git():
+    return bool(spawn.find_executable("git"))
 
 
 def get_git_project_files():
