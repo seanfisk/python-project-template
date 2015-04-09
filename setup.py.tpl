@@ -32,7 +32,7 @@ except ImportError:
     pass
 
 # Add the current directory to the module search path.
-sys.path.append('.')
+sys.path.insert(0, os.path.abspath('.'))
 
 ## Constants
 CODE_DIRECTORY = '$package'
