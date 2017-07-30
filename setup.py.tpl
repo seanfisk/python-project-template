@@ -168,8 +168,9 @@ def _lint():
     #   to pass a byte string to endswith.
     project_python_files = [filename for filename in get_project_files()
                             if filename.endswith(b'.py')]
-    retcode = subprocess.call(
-        ['flake8', '--max-complexity=10'] + project_python_files)
+    call_args = [b'flake8', b'--max-complexity=10'] + project_python_files
+    call_args = list(map(bytes.decode, call_args))
+    retcode = subprocess.call(call_args)
     if retcode == 0:
         print_success_message('No style errors')
     return retcode
