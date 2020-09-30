@@ -1,6 +1,6 @@
-=========================
- Python Project Template
-=========================
+<=========================>
+  Python Project Template
+<=========================>
 
 .. image:: https://travis-ci.org/seanfisk/python-project-template.png
    :target: https://travis-ci.org/seanfisk/python-project-template
