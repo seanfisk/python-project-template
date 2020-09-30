@@ -22,7 +22,7 @@ from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 from distutils import spawn
 
-try:
+try:   #exception handling , import error can be handled without prompting users.
     import colorama
     colorama.init()  # Initialize colorama on Windows
 except ImportError:
