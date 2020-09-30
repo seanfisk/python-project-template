@@ -7,7 +7,7 @@
 
 This project provides a best-practices template Python project which integrates several different tools. It saves you work by setting up a number of things, including documentation, code checking, and unit test runners.
 
-As it is an all-in-one solution, the tools used are rather opinionated. They include:
+As it is an all-in-one solution, the tools used are rather opinionated. They includes:
 
 * Paver_ for running miscellaneous tasks
 * Setuptools_ for distribution (Setuptools and Distribute_ have merged_)
@@ -62,7 +62,7 @@ Instructions
 
 #. Replace this ``README`` with your own text.
 
-#. *(Optional, but good practice)* Create a new virtual environment for your project:
+#. *(Optional, but good practice)* Create a new virtual environment for your projects:
 
    With pyenv_ and pyenv-virtualenv_::
 
