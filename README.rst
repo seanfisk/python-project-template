@@ -30,7 +30,7 @@ If you are new to Python or new to creating Python projects, see Kenneth Reitz's
 .. _tox: http://testrun.org/tox/latest/
 .. _Hitchhiker's Guide to Python: http://docs.python-guide.org/en/latest/
 
-Project Setup
+Set up your project
 =============
 
 This will be the ``README`` for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this ``README`` with contents specific to your project.
