@@ -79,6 +79,8 @@ Instructions
        source /path/to/my-project-venv/bin/activate
 
    If you are new to virtual environments, please see the `Virtual Environment section`_ of Kenneth Reitz's Python Guide.
+#. Upgrade pip to version 19.0.1
+        python -m pip install --upgrade pip
 
 #. Install the project's development and runtime requirements::
 
