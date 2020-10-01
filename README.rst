@@ -1,5 +1,5 @@
 =========================
- Python Project Template
+ Templates for python projects!! 
 =========================
 
 .. image:: https://travis-ci.org/seanfisk/python-project-template.png
