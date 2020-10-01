@@ -1,5 +1,5 @@
 =========================
- Python Project Template
+ this is Python Project Template
 =========================
 
 .. image:: https://travis-ci.org/seanfisk/python-project-template.png
