@@ -9,13 +9,13 @@ This project provides a best-practices template Python project which integrates 
 
 As it is an all-in-one solution, the tools used are rather opinionated. They include:
 
-* Paver_ for running miscellaneous tasks
-* Setuptools_ for distribution (Setuptools and Distribute_ have merged_)
-* Sphinx_ for documentation
-* flake8_ for source code checking
-* pytest_ for unit testing
-* mock_ for mocking (not required by the template, but included anyway)
-* tox_ for testing on multiple Python versions
+* Paver_ for running miscellaneous tasks .
+* Setuptools_ for distribution (Setuptools and Distribute_ have merged_) .
+* Sphinx_ for documentation .
+* flake8_ for source code checking .
+* pytest_ for unit testing and debugging .
+* mock_ for mocking (not required by the template, but included anyway) .
+* tox_ for testing on multiple Python versions .
 
 If you are new to Python or new to creating Python projects, see Kenneth Reitz's `Hitchhiker's Guide to Python`_ for an explanation of some of the tools used here.
 
@@ -30,12 +30,12 @@ If you are new to Python or new to creating Python projects, see Kenneth Reitz's
 .. _tox: http://testrun.org/tox/latest/
 .. _Hitchhiker's Guide to Python: http://docs.python-guide.org/en/latest/
 
-Project Setup
+Project Setup :
 =============
 
 This will be the ``README`` for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this ``README`` with contents specific to your project.
 
-Instructions
+Instructions :
 ------------
 
 #. Clone the template project, replacing ``my-project`` with the name of the project you are creating::
@@ -58,7 +58,7 @@ Instructions
 
 #. Change the license in ``setup.py`` and replace the generated ``LICENSE`` file with the one of your choice. If you would like to use the MIT license, no change is necessary.
 
-#. Change the ``classifiers`` keyword in ``setup.py``. This *will* require modification.
+#. Change the ``classifiers`` keywords in ``setup.py``. This *will* require modification.
 
 #. Replace this ``README`` with your own text.
 
@@ -109,7 +109,7 @@ Instructions
         |  _/ _ \\__ \__ \ _|| |) |
         |_|/_/ \_\___/___/___|___/
 
-   The substitution performed is rather naive, so some style errors may be reported if the description or name cause lines to be too long. Correct these manually before moving to the next step. If any unit tests fail to pass, please report an issue.
+   The substitution performed is rather naive, so some style errors may be reported if the description or name causes lines to be too long. Correct these manually before moving to the next step. If any unit tests fails to pass, please report an issue.
 
 **Project setup is now complete!**
 
@@ -215,7 +215,7 @@ The template also uses a number of other pieces of software, whose licenses are 
 Issues
 ======
 
-Please report any bugs or requests that you have using the GitHub issue tracker!
+Please report any bugs or requests that you have, using the GitHub issue tracker!
 
 Development
 ===========
