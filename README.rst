@@ -33,7 +33,7 @@ If you are new to Python or new to creating Python projects, see Kenneth Reitz's
 Project Setup
 =============
 
-This will be the ``README`` for your project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this ``README`` with contents specific to your project.
+This will be the ``README`` for your project it describes about the full project in quite manner. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this ``README`` with contents specific to your project.
 
 Instructions
 ------------
