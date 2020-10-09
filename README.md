@@ -1,6 +1,7 @@
-=========================
+#=========================
  Python Project Template
-=========================
+#=========================
+Projects Files should be of MD
 
 .. image:: https://travis-ci.org/seanfisk/python-project-template.png
    :target: https://travis-ci.org/seanfisk/python-project-template
