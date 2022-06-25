@@ -1,0 +1,5 @@
+MAJOR = 0
+MINOR = 1
+ISSUE = 0
+
+VERSION = f"{MAJOR}.{MINOR}.{ISSUE}"
