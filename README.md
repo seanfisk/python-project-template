@@ -17,7 +17,8 @@ This project provides a minimalistic template Python project which can be used a
 
 ## Project Setup
 
-This will be the `README` for the project. For now, follow these instructions to get this project template set up correctly. Then, come back and replace the contents of this `README` with contents specific to your project.
+This will be the `README` for the project. For now, follow these instructions to get this project template set up correctly.
+Then, come back and replace the contents of this `README` with contents specific to your project.
 
 ## Structure
 ```
